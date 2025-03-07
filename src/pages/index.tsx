@@ -2,7 +2,7 @@ import {useGetProfileInfoQuery} from "@/queries/usersgenerated";
 
 
 export default function Home() {
-    const userID = 10
+    const userID = 3
     const { data, loading, error } = useGetProfileInfoQuery({
         variables: {
             userID,

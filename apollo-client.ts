@@ -14,12 +14,10 @@ const wsLink = new GraphQLWsLink(
     })
 )
 
-const authLink = setContext((_, { headers, token })=>{
-const authToken = token || '1234'
+const authLink = setContext(()=>{
     return {
     headers: {
-        ...headers,
-        authorization: authToken ? `Bearer ${authToken}` : '',
+        authorization: "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
     }
     }
 })
