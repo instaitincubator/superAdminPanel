@@ -1,7 +1,41 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client"
+import {ApolloClient, createHttpLink, InMemoryCache, split} from "@apollo/client"
+import {getMainDefinition} from "@apollo/client/utilities";
+import {GraphQLWsLink} from "@apollo/client/link/subscriptions";
+import {createClient} from "graphql-ws";
+import {setContext} from "@apollo/client/link/context";
+
+const httpLink = createHttpLink({
+  uri: 'https://inctagram.work/api/v1/graphql',
+})
+
+const wsLink = new GraphQLWsLink(
+    createClient({
+        url: 'ws://inctagram.work/api/v1/graphql'
+    })
+)
+
+const authLink = setContext((_, { headers, token })=>{
+const authToken = token || '1234'
+    return {
+    headers: {
+        ...headers,
+        authorization: authToken ? `Bearer ${authToken}` : '',
+    }
+    }
+})
+
+
+const link = split(
+    ({ query }) => {
+        const definition = getMainDefinition(query);
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+    },
+    wsLink,
+    authLink.concat(httpLink),
+);
 
 const client = new ApolloClient({
-  uri: "ws://inctagram.work/api/v1/graphq",
+  link,
   cache: new InMemoryCache(),
 })
 

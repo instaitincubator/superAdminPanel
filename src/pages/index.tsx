@@ -1,19 +1,16 @@
-import { gql, useQuery } from "@apollo/client"
+import {useGetProfileInfoQuery} from "@/queries/usersgenerated";
 
-const GET_LOCATIONS = gql`
-  query GetLocations {
-    locations {
-      id
-      name
-      description
-      photo
-    }
-  }
-`
+
 export default function Home() {
-  const { loading, error, data } = useQuery(GET_LOCATIONS)
-  console.log(error)
-  if (loading) return null
-  if (error) return <div>ЕРОР!</div>
-  return <div>{data}</div>
+    const userID = 10
+    const { data, loading, error } = useGetProfileInfoQuery({
+        skip: !userID,
+        variables: {
+            userID,
+        },
+    })
+
+    if (loading) return null
+    if (error) return <div> {JSON.stringify(error)} </div>
+    return <div>{data?.getUser.userName}</div>
 }

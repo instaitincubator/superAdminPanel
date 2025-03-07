@@ -6,25 +6,36 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen:watch": "graphql-codegen --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
     "@it-incubator/prettier-config": "^0.1.2",
+    "@parcel/watcher": "^2.5.1",
     "graphql": "^16.10.0",
+    "graphql-ws": "^6.0.4",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/client-preset": "^4.6.4",
+    "@graphql-codegen/near-operation-file-preset": "^3.0.0",
+    "@graphql-codegen/typescript": "^4.1.5",
+    "@graphql-codegen/typescript-operations": "^4.5.1",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
+    "tailwind-merge": "^2.6.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.8.2"
   }
 }
