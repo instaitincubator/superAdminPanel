@@ -6,28 +6,6 @@ export const GET_PROFILE_INFO = gql`
             id
             userName
             email
-            createdAt
-            profile {
-                id
-                userName
-                firstName
-                lastName
-                city
-                dateOfBirth
-                aboutMe
-                createdAt
-                avatars {
-                    url
-                    width
-                    height
-                    fileSize
-                }
-            }
-            userBan {
-                reason
-                createdAt
-                __typename
-            }
         }
     }
 `

@@ -8,40 +8,17 @@ export type GetProfileInfoQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetProfileInfoQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: number, userName: string, email: string, createdAt: any, profile: { __typename?: 'Profile', id: number, userName?: string | null, firstName?: string | null, lastName?: string | null, city?: string | null, dateOfBirth?: any | null, aboutMe?: string | null, createdAt: any, avatars?: Array<{ __typename?: 'Avatar', url?: string | null, width?: number | null, height?: number | null, fileSize?: number | null }> | null }, userBan?: { __typename: 'UserBan', reason: string, createdAt: any } | null } };
+export type GetProfileInfoQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: number, userName: string, email: string } };
 
 
 export const GetProfileInfoDocument = gql`
     query getProfileInfo($userID: Int! = 10) {
-  getUser(userId: $userID) {
-    id
-    userName
-    email
-    createdAt
-    profile {
-      id
-      userName
-      firstName
-      lastName
-      city
-      dateOfBirth
-      aboutMe
-      createdAt
-      avatars {
-        url
-        width
-        height
-        fileSize
-      }
-    }
-    userBan {
-      reason
-      createdAt
-      __typename
-    }
-  }
-}
-    `;
+        getUser(userId: $userID) {
+            id
+            userName
+            email
+        }
+    } `;
 
 /**
  * __useGetProfileInfoQuery__
