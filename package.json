@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
+    "@hookform/resolvers": "^4.1.3",
     "@it-incubator/prettier-config": "^0.1.2",
     "@parcel/watcher": "^2.5.1",
     "class-variance-authority": "^0.7.1",

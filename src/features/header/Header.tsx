@@ -58,4 +58,3 @@ export const Header = ({ className, ...rest }: HeaderProps) => {
       </div>
     </header>
   )
-}
