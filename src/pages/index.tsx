@@ -8,7 +8,12 @@ export default function Home() {
     },
   })
 
-  if (loading) return null
-  if (error) return <div> {JSON.stringify(error)} </div>
+  if (loading) {
+    return null
+  }
+  if (error) {
+    return <div> {JSON.stringify(error)} </div>
+  }
+
   return <div>{data?.getUser.userName}</div>
 }
