@@ -17,3 +17,4 @@ export const Layout: NextPage<PropsWithChildren> = props => {
 
 export const getLayout = (page: ReactElement) => {
   return <Layout>{page}</Layout>
+}
