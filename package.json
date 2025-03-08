@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "codegen:watch": "graphql-codegen --watch",
@@ -14,11 +14,15 @@
     "@apollo/client": "^3.13.1",
     "@it-incubator/prettier-config": "^0.1.2",
     "@parcel/watcher": "^2.5.1",
+    "clsx": "^2.1.1",
     "graphql": "^16.10.0",
     "graphql-ws": "^6.0.4",
-    "next": "15.2.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "14.2.3",
+    "nprogress": "^0.2.0",
+    "react": "^18.1.0",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -28,16 +32,18 @@
     "@graphql-codegen/typescript": "^4.1.5",
     "@graphql-codegen/typescript-operations": "^4.5.1",
     "@graphql-codegen/typescript-react-apollo": "^4.3.2",
-    "@tailwindcss/postcss": "^4",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/nprogress": "^0.2.3",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "eslint-plugin-perfectionist": "^4.9.0",
+    "postcss": "^8",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.8.2"
+    "typescript": "^5"
   }
 }

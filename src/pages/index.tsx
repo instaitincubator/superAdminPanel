@@ -1,3 +1,4 @@
+import { getLayout } from "@/app/layouts/mainLayout/Layout"
 import { useGetProfileInfoQuery } from "@/queries/usersgenerated"
 
 export default function Home() {
@@ -15,5 +16,7 @@ export default function Home() {
     return <div> {JSON.stringify(error)} </div>
   }
 
-  return <div>{data?.getUser.userName}</div>
+  return <div className={"border-10"}>{data?.getUser.userName}</div>
 }
+
+Home.getLayout = getLayout
