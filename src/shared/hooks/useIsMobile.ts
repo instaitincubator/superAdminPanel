@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 const useIsMobile = (breakpoint: number = 768) => {
-    const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const handleResize = () => {
-                setIsMobile(window.innerWidth < breakpoint)
-            }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < breakpoint)
+      }
 
-            handleResize() // Проверяем начальный размер окна
-            window.addEventListener('resize', handleResize)
+      handleResize() // Проверяем начальный размер окна
+      window.addEventListener("resize", handleResize)
 
-            return () => {
-                window.removeEventListener('resize', handleResize)
-            }
-        }
-    }, [breakpoint])
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }
+  }, [breakpoint])
 
-    return isMobile
+  return isMobile
 }
 
 export default useIsMobile
