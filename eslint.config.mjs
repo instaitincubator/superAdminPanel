@@ -35,7 +35,7 @@ const eslintConfig = [
             'no-debugger': 'off',
             'no-duplicate-imports': 'error',
             'no-empty-pattern': 'off',
-            'no-nested-ternary': 'error',
+            'no-nested-ternary': 'off',
             'no-undef': 'warn',
             'no-unused-vars': 'off',
             'no-var': 'error',

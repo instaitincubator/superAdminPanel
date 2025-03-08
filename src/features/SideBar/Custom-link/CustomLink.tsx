@@ -52,7 +52,7 @@ const CustomLink = ({
   return (
     <Link
       className={cn(
-        "flex border-2 border-transparent w-[80%] gap-4 hover:text-accent-100 rounded active:text-accent-700",
+        "flex border-2 items-center border-transparent w-[80%] gap-4 hover:text-accent-100 rounded active:text-accent-700",
         isActive ? "text-accent-700" : "",
         className
       )}

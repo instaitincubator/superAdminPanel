@@ -1,3 +1,5 @@
+import React from "react"
+
 import { getLayout } from "@/app/layouts/mainLayout/Layout"
 import { useGetProfileInfoQuery } from "@/queries/usersgenerated"
 

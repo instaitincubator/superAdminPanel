@@ -14,15 +14,17 @@
     "@apollo/client": "^3.13.1",
     "@it-incubator/prettier-config": "^0.1.2",
     "@parcel/watcher": "^2.5.1",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "graphql": "^16.10.0",
     "graphql-ws": "^6.0.4",
+    "lucide-react": "^0.479.0",
+    "motion": "^12.4.10",
     "next": "14.2.3",
     "nprogress": "^0.2.0",
     "react": "^18.1.0",
     "react-dom": "^18",
-    "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

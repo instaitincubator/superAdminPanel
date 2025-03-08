@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react"
 
 import CustomLink from "@/features/SideBar/Custom-link/CustomLink"
+import { AnimateUser } from "@/shared/animate-svg/AnimateUser"
+import { Instagram } from "@/shared/animate-svg/Instagram"
+import { Money } from "@/shared/animate-svg/Money"
+import { Trending } from "@/shared/animate-svg/Trending"
 import { useTranslation } from "@/shared/hooks/useTranslation"
 import { useRouter } from "next/router"
-
-import {
-  Trending,
-  Profile,
-  ProfileFill,
-  Card,
-  CardFill,
-  Picture,
-  PictureFill,
-} from "./../../../public"
 
 export const SideBar = () => {
   const router = useRouter()
@@ -28,8 +22,7 @@ export const SideBar = () => {
       <CustomLink
         activeLink={activeLink}
         alt={t.sidebar.myProfile}
-        child1={<Profile />}
-        child2={<ProfileFill />}
+        child1={<AnimateUser />}
         href="/users"
         setActiveLink={setActiveLink}
         title={t.sidebar.myProfile}
@@ -45,8 +38,7 @@ export const SideBar = () => {
       <CustomLink
         activeLink={activeLink}
         alt={t.sidebar.paymentsList}
-        child1={<Card />}
-        child2={<CardFill />}
+        child1={<Money />}
         href="/payments"
         setActiveLink={setActiveLink}
         title={t.sidebar.paymentsList}
@@ -54,8 +46,7 @@ export const SideBar = () => {
       <CustomLink
         activeLink={activeLink}
         alt={t.sidebar.PostsList}
-        child1={<Picture />}
-        child2={<PictureFill />}
+        child1={<Instagram />}
         href="/posts"
         setActiveLink={setActiveLink}
         title={t.sidebar.PostsList}
