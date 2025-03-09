@@ -1,7 +1,11 @@
-import { getSidebarLayout } from "@/app/layouts/sidebarLayout/sidebarLayout"
+import {getSidebarLayout} from "@/app/layouts/sidebarLayout/sidebarLayout"
+import {UsersList} from "@/features/users-list/UsersList";
 
 export default function Users() {
-  return <div>usersafgsdasfgdgasdgfdsgasd</div>
+
+    return (
+        <UsersList/>
+    )
 }
 
 Users.getLayout = getSidebarLayout

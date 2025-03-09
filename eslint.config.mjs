@@ -1,5 +1,6 @@
 import {dirname} from "path";
 import {fileURLToPath} from "url";
+
 import {FlatCompat} from "@eslint/eslintrc";
 import perfectionist from "eslint-plugin-perfectionist";
 
@@ -18,7 +19,9 @@ const eslintConfig = [
             perfectionist,
         },
         rules: {
-            "@typescript-eslint/no-explicit-any": "off",
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-unused-vars': 'off',
+            '@typescript-eslint/no-non-null-asserted-optional-chain' : 'off',
             'no-console': 'off',
             'react-hooks/rules-of-hooks': 'off',
             'arrow-parens': 'off',
@@ -36,9 +39,6 @@ const eslintConfig = [
             'no-duplicate-imports': 'error',
             'no-empty-pattern': 'off',
             'no-nested-ternary': 'off',
-            'no-undef': 'warn',
-            'no-unused-vars': 'off',
-            'no-var': 'error',
             'padding-line-between-statements': [
                 'error',
                 {blankLine: 'always', next: 'return', prev: '*'},

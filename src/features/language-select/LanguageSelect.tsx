@@ -24,7 +24,6 @@ export const LanguageSelect = () => {
 
   const isMobile = useIsMobile(480)
 
-  console.log(router.locales)
   const options = router.locales?.map(lg => {
     const imageSrc =
       lg === "russian" ? (

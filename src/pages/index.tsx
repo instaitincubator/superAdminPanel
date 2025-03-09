@@ -1,7 +1,7 @@
 import React from "react"
 
 import { getLayout } from "@/app/layouts/mainLayout/Layout"
-import { useGetProfileInfoQuery } from "@/queries/usersgenerated"
+import {useGetProfileInfoQuery} from "@/queries/profilegenerated";
 
 export default function Home() {
   const userID = 3
