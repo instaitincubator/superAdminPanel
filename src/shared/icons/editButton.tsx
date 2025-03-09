@@ -1,4 +1,4 @@
-import Button from '@/shared/ui/Button/Button'
+import Button from "@/shared/ui/Button/Button"
 
 type ButtonType = {
   isActive?: boolean
@@ -8,7 +8,7 @@ export const EditButton = ({ isActive, onClick }: ButtonType) => {
   return (
     <Button
       className={
-        'bg-inherit flex justify-end hover:bg-inherit p-0 focus:bg-inherit active:bg-inherit'
+        "bg-inherit flex justify-end hover:bg-inherit p-0 focus:bg-inherit active:bg-inherit"
       }
       onClick={onClick}
     >

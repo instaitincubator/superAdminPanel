@@ -1,278 +1,278 @@
-import {PostsByUserModel, PostsPaginationModel} from "@/types";
+import { PostsByUserModel, PostsPaginationModel } from "@/types"
 
 type ID = string
 type DateTime = string
 type Nullable<T> = T | null
 
 export interface User {
-    id: number
-    userName: string
-    email: string
-    createdAt: DateTime
-    profile: Profile
-    userBan?: UserBan | null
+  id: number
+  userName: string
+  email: string
+  createdAt: DateTime
+  profile: Profile
+  userBan?: UserBan | null
 }
 
 interface Profile {
-    id: number
-    userName?: string
-    firstName?: string
-    lastName?: string
-    aboutMe?: string
-    city?: string
-    country?: string
-    region?: string
-    dateOfBirth?: DateTime
-    createdAt: DateTime
-    avatars?: Avatar[]
+  id: number
+  userName?: string
+  firstName?: string
+  lastName?: string
+  aboutMe?: string
+  city?: string
+  country?: string
+  region?: string
+  dateOfBirth?: DateTime
+  createdAt: DateTime
+  avatars?: Avatar[]
 }
 
 interface Avatar {
-    fileSize?: number
-    height?: number
-    width?: number
-    url?: string
+  fileSize?: number
+  height?: number
+  width?: number
+  url?: string
 }
 
 interface UserBan {
-    createdAt: DateTime
-    reason: string
-    __typename?: string
+  createdAt: DateTime
+  reason: string
+  __typename?: string
 }
 
 interface Subscription {
-    postAdded: Post
+  postAdded: Post
 }
 
 interface Post {
-    id: number
-    description: string
-    createdAt: DateTime
-    updatedAt: DateTime
-    ownerId: number
-    postOwner: PostOwnerModel
-    images?: ImagePost[]
-    userBan?: UserBan
+  id: number
+  description: string
+  createdAt: DateTime
+  updatedAt: DateTime
+  ownerId: number
+  postOwner: PostOwnerModel
+  images?: ImagePost[]
+  userBan?: UserBan
 }
 
 interface PostOwnerModel {
-    id: number
-    userName: string
-    firstName?: string
-    lastName?: string
-    avatars?: Avatar[]
+  id: number
+  userName: string
+  firstName?: string
+  lastName?: string
+  avatars?: Avatar[]
 }
 
 interface ImagePost {
-    id?: number
-    url?: string
-    width?: number
-    height?: number
-    fileSize?: number
-    createdAt?: DateTime
+  id?: number
+  url?: string
+  width?: number
+  height?: number
+  fileSize?: number
+  createdAt?: DateTime
 }
 
 interface PaginationModel {
-    page: number
-    pageSize: number
-    pagesCount: number
-    totalCount: number
+  page: number
+  pageSize: number
+  pagesCount: number
+  totalCount: number
 }
 
 interface UsersPaginationModel {
-    pagination: PaginationModel
-    users: User[]
+  pagination: PaginationModel
+  users: User[]
 }
 
 enum SubscriptionType {
-    DAY = "DAY",
-    WEEKLY = "WEEKLY",
-    MONTHLY = "MONTHLY",
+  DAY = "DAY",
+  WEEKLY = "WEEKLY",
+  MONTHLY = "MONTHLY",
 }
 
 enum PaymentMethod {
-    CREDIT_CARD = "CREDIT_CARD",
-    PAYPAL = "PAYPAL",
-    STRIPE = "STRIPE",
+  CREDIT_CARD = "CREDIT_CARD",
+  PAYPAL = "PAYPAL",
+  STRIPE = "STRIPE",
 }
 
 enum CurrencyType {
-    EUR = "EUR",
-    USD = "USD",
+  EUR = "EUR",
+  USD = "USD",
 }
 
 enum StatusSubscriptionType {
-    ACTIVE = "ACTIVE",
-    DELETED = "DELETED",
-    FINISHED = "FINISHED",
-    PENDING = "PENDING",
+  ACTIVE = "ACTIVE",
+  DELETED = "DELETED",
+  FINISHED = "FINISHED",
+  PENDING = "PENDING",
 }
 
 interface Payment {
-    id?: number
-    amount?: number
-    createdAt?: DateTime
-    currency?: CurrencyType
-    endDate?: DateTime
-    userId?: number
-    paymentMethod?: PaymentMethod
-    type?: SubscriptionType
+  id?: number
+  amount?: number
+  createdAt?: DateTime
+  currency?: CurrencyType
+  endDate?: DateTime
+  userId?: number
+  paymentMethod?: PaymentMethod
+  type?: SubscriptionType
 }
 
 interface SubscriptionByPaymentModel {
-    id: string
-    businessAccountId: number
-    status: StatusSubscriptionType
-    type: SubscriptionType
-    price: number
-    payments: Payment[]
-    paymentType?: PaymentMethod
-    startDate?: DateTime
-    endDate?: DateTime
-    dateOfPayment?: DateTime
+  id: string
+  businessAccountId: number
+  status: StatusSubscriptionType
+  type: SubscriptionType
+  price: number
+  payments: Payment[]
+  paymentType?: PaymentMethod
+  startDate?: DateTime
+  endDate?: DateTime
+  dateOfPayment?: DateTime
 }
 
 interface SubscriptionPaymentsModel {
-    id?: number
-    amount?: number
-    createdAt?: DateTime
-    currency?: CurrencyType
-    endDate?: DateTime
-    userId?: number
-    userName: string
-    paymentMethod: PaymentMethod
-    type: SubscriptionType
-    avatars?: Avatar[]
+  id?: number
+  amount?: number
+  createdAt?: DateTime
+  currency?: CurrencyType
+  endDate?: DateTime
+  userId?: number
+  userName: string
+  paymentMethod: PaymentMethod
+  type: SubscriptionType
+  avatars?: Avatar[]
 }
 
 interface PaymentsPaginationModel {
-    page: number
-    pageSize: number
-    pagesCount: number
-    totalCount: number
-    items: SubscriptionPaymentsModel[]
+  page: number
+  pageSize: number
+  pagesCount: number
+  totalCount: number
+  items: SubscriptionPaymentsModel[]
 }
 
 interface PaymentPaginationModel {
-    page: number
-    pageSize: number
-    pagesCount: number
-    totalCount: number
-    items: SubscriptionByPaymentModel[]
+  page: number
+  pageSize: number
+  pagesCount: number
+  totalCount: number
+  items: SubscriptionByPaymentModel[]
 }
 
 interface Follow {
-    id: number
-    userId: number
-    userName?: string
-    createdAt: DateTime
+  id: number
+  userId: number
+  userName?: string
+  createdAt: DateTime
 }
 
 interface FollowPaginationModel {
-    items: Follow[]
-    page: number
-    pageSize: number
-    pagesCount: number
-    totalCount: number
+  items: Follow[]
+  page: number
+  pageSize: number
+  pagesCount: number
+  totalCount: number
 }
 
 export enum UserBlockStatus {
-    ALL = "ALL",
-    BLOCKED = "BLOCKED",
-    UNBLOCKED = "UNBLOCKED",
+  ALL = "ALL",
+  BLOCKED = "BLOCKED",
+  UNBLOCKED = "UNBLOCKED",
 }
 
 export enum SortBy {
-    userName = "userName",
-    createdAt = "createdAt",
+  userName = "userName",
+  createdAt = "createdAt",
 }
 
 export enum SortDirection {
-    ASC = "asc",
-    DESC = "desc",
+  ASC = "asc",
+  DESC = "desc",
 }
 
 interface Query {
-    getUsers: UsersPaginationModel
-    getUser: User
-    getPosts: PostsPaginationModel
-    getPostsByUser: PostsByUserModel
-    getFollowers: FollowPaginationModel
-    getFollowing: FollowPaginationModel
-    getPayments: PaymentsPaginationModel
-    getPaymentsByUser: PaymentPaginationModel
+  getUsers: UsersPaginationModel
+  getUser: User
+  getPosts: PostsPaginationModel
+  getPostsByUser: PostsByUserModel
+  getFollowers: FollowPaginationModel
+  getFollowing: FollowPaginationModel
+  getPayments: PaymentsPaginationModel
+  getPaymentsByUser: PaymentPaginationModel
 }
 
 interface QueryGetUsersArgs {
-    pageNumber?: number
-    pageSize?: number
-    searchTerm?: string
-    sortBy?: string
-    sortDirection?: SortDirection
-    statusFilter?: UserBlockStatus
+  pageNumber?: number
+  pageSize?: number
+  searchTerm?: string
+  sortBy?: string
+  sortDirection?: SortDirection
+  statusFilter?: UserBlockStatus
 }
 
 interface QueryGetPostsArgs {
-    endCursorPostId?: number
-    pageSize?: number
-    searchTerm?: string
-    sortBy?: string
-    sortDirection?: SortDirection
+  endCursorPostId?: number
+  pageSize?: number
+  searchTerm?: string
+  sortBy?: string
+  sortDirection?: SortDirection
 }
 
 interface QueryGetUserArgs {
-    userId: number
+  userId: number
 }
 
 interface QueryGetFollowersArgs {
-    userId: number
-    pageNumber?: number
-    pageSize?: number
-    sortBy?: string
-    sortDirection?: SortDirection
+  userId: number
+  pageNumber?: number
+  pageSize?: number
+  sortBy?: string
+  sortDirection?: SortDirection
 }
 
 interface QueryGetFollowingArgs {
-    userId: number
-    pageNumber?: number
-    pageSize?: number
-    sortBy?: string
-    sortDirection?: SortDirection
+  userId: number
+  pageNumber?: number
+  pageSize?: number
+  sortBy?: string
+  sortDirection?: SortDirection
 }
 
 interface QueryGetPaymentsByUserArgs {
-    userId: number
-    pageNumber?: number
-    pageSize?: number
-    sortBy?: string
-    sortDirection?: SortDirection
+  userId: number
+  pageNumber?: number
+  pageSize?: number
+  sortBy?: string
+  sortDirection?: SortDirection
 }
 
 interface Mutation {
-    banUser: boolean
-    unbanUser: boolean
-    removeUser: boolean
-    loginAdmin: LoginAdmin
+  banUser: boolean
+  unbanUser: boolean
+  removeUser: boolean
+  loginAdmin: LoginAdmin
 }
 
 interface LoginAdmin {
-    logged: boolean
+  logged: boolean
 }
 
 interface MutationBanUserArgs {
-    userId: number
-    banReason: string
+  userId: number
+  banReason: string
 }
 
 interface MutationUnbanUserArgs {
-    userId: number
+  userId: number
 }
 
 interface MutationRemoveUserArgs {
-    userId: number
+  userId: number
 }
 
 interface MutationLoginAdminArgs {
-    email: string
-    password: string
+  email: string
+  password: string
 }

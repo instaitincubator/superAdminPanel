@@ -1,26 +1,27 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client"
+import * as Apollo from "@apollo/client"
 
-import * as Types from '../types';
-const defaultOptions = {} as const;
+import * as Types from "../types"
+const defaultOptions = {} as const
 
 export type GetProfileInfoQueryVariables = Types.Exact<{
-  userID: Types.Scalars['Int']['input'];
-}>;
+  userID: Types.Scalars["Int"]["input"]
+}>
 
-
-export type GetProfileInfoQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: number, userName: string, email: string } };
-
+export type GetProfileInfoQuery = {
+  __typename?: "Query"
+  getUser: { __typename?: "User"; id: number; userName: string; email: string }
+}
 
 export const GetProfileInfoDocument = gql`
-    query getProfileInfo($userID: Int!) {
-        getUser(userId: $userID) {
-            id
-            userName
-            email
-        }
+  query getProfileInfo($userID: Int!) {
+    getUser(userId: $userID) {
+      id
+      userName
+      email
     }
-`;
+  }
+`
 
 /**
  * __useGetProfileInfoQuery__
@@ -38,22 +39,64 @@ export const GetProfileInfoDocument = gql`
  *   },
  * });
  */
-export function useGetProfileInfoQuery(baseOptions: Apollo.QueryHookOptions<GetProfileInfoQuery, GetProfileInfoQueryVariables> & ({ variables: GetProfileInfoQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
+export function useGetProfileInfoQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetProfileInfoQuery,
+    GetProfileInfoQueryVariables
+  > &
+    (
+      | { variables: GetProfileInfoQueryVariables; skip?: boolean }
+      | { skip: boolean }
+    )
+) {
+  const options = { ...defaultOptions, ...baseOptions }
 
-        return Apollo.useQuery<GetProfileInfoQuery, GetProfileInfoQueryVariables>(GetProfileInfoDocument, options);
-      }
-export function useGetProfileInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProfileInfoQuery, GetProfileInfoQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+  return Apollo.useQuery<GetProfileInfoQuery, GetProfileInfoQueryVariables>(
+    GetProfileInfoDocument,
+    options
+  )
+}
+export function useGetProfileInfoLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetProfileInfoQuery,
+    GetProfileInfoQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
 
-          return Apollo.useLazyQuery<GetProfileInfoQuery, GetProfileInfoQueryVariables>(GetProfileInfoDocument, options);
-        }
-export function useGetProfileInfoSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetProfileInfoQuery, GetProfileInfoQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+  return Apollo.useLazyQuery<GetProfileInfoQuery, GetProfileInfoQueryVariables>(
+    GetProfileInfoDocument,
+    options
+  )
+}
+export function useGetProfileInfoSuspenseQuery(
+  baseOptions?:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<
+        GetProfileInfoQuery,
+        GetProfileInfoQueryVariables
+      >
+) {
+  const options =
+    baseOptions === Apollo.skipToken
+      ? baseOptions
+      : { ...defaultOptions, ...baseOptions }
 
-          return Apollo.useSuspenseQuery<GetProfileInfoQuery, GetProfileInfoQueryVariables>(GetProfileInfoDocument, options);
-        }
-export type GetProfileInfoQueryHookResult = ReturnType<typeof useGetProfileInfoQuery>;
-export type GetProfileInfoLazyQueryHookResult = ReturnType<typeof useGetProfileInfoLazyQuery>;
-export type GetProfileInfoSuspenseQueryHookResult = ReturnType<typeof useGetProfileInfoSuspenseQuery>;
-export type GetProfileInfoQueryResult = Apollo.QueryResult<GetProfileInfoQuery, GetProfileInfoQueryVariables>;
+  return Apollo.useSuspenseQuery<
+    GetProfileInfoQuery,
+    GetProfileInfoQueryVariables
+  >(GetProfileInfoDocument, options)
+}
+export type GetProfileInfoQueryHookResult = ReturnType<
+  typeof useGetProfileInfoQuery
+>
+export type GetProfileInfoLazyQueryHookResult = ReturnType<
+  typeof useGetProfileInfoLazyQuery
+>
+export type GetProfileInfoSuspenseQueryHookResult = ReturnType<
+  typeof useGetProfileInfoSuspenseQuery
+>
+export type GetProfileInfoQueryResult = Apollo.QueryResult<
+  GetProfileInfoQuery,
+  GetProfileInfoQueryVariables
+>

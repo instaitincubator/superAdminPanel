@@ -17,7 +17,7 @@ export const TableRoot = (props: TableProps) => {
 
   return (
     <table
-      className={cn("flex flex-col w-full p-4 min-w-[1250px]", { className })}
+      className={cn("flex flex-col w-full p-4 min-w-[1250px]", className)}
       {...res}
     />
   )
@@ -26,7 +26,7 @@ export const TableRoot = (props: TableProps) => {
 export const TableBody = (props: TableBodyProps) => {
   const { className, ...res } = props
 
-  return <tbody className={cn("overflow-x-auto", { className })} {...res} />
+  return <tbody className={cn("overflow-x-auto", className)} {...res} />
 }
 
 export const TableHead = (props: TableHeadProps) => {
@@ -34,9 +34,10 @@ export const TableHead = (props: TableHeadProps) => {
 
   return (
     <thead
-      className={cn("flex w-full bg-dark-500 min-h-[48px] items-center", {
-        className,
-      })}
+      className={cn(
+        "flex w-full bg-dark-500 min-h-[48px] items-center",
+        className
+      )}
       {...res}
     />
   )
@@ -49,7 +50,7 @@ export const TableRow = (props: TableRowProps) => {
     <tr
       className={cn(
         "flex w-full items-center px-4 justify-between min-h-[48px] border border-dark-500 border-b-1 border-x-1",
-        { className }
+        className
       )}
       {...res}
     />
@@ -60,17 +61,14 @@ export const TableCell = (props: TableCellProps) => {
   const { className, ...res } = props
 
   return (
-    <td
-      className={cn("flex flex-1 items-center h-full", { className })}
-      {...res}
-    />
+    <td className={cn("flex flex-1 items-center h-full", className)} {...res} />
   )
 }
 export const HeadCell = (props: HeadCellProps) => {
   const { children, className, ...res } = props
 
   return (
-    <th className={cn("flex flex-1", { className })} {...res}>
+    <th className={cn("flex flex-1", className)} {...res}>
       <span className="whitespace-nowrap">{children}</span>
     </th>
   )
