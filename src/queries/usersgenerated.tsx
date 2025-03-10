@@ -1,5 +1,5 @@
-import { gql } from "@apollo/client"
 import * as Apollo from "@apollo/client"
+import { gql } from "@apollo/client"
 
 import * as Types from "../types"
 
@@ -10,7 +10,7 @@ export type GetUsersQueryVariables = Types.Exact<{
   pageSize?: Types.InputMaybe<Types.Scalars["Int"]["input"]>
   sortBy?: Types.InputMaybe<Types.Scalars["String"]["input"]>
   searchTerm?: Types.InputMaybe<Types.Scalars["String"]["input"]>
-  sortDirection?: Types.InputMaybe<Types.SortDirecton>
+  sortDirection?: Types.InputMaybe<Types.SortDirection>
   statusFilter?: Types.InputMaybe<Types.UserBlockStatus>
 }>
 
