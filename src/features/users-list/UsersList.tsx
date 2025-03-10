@@ -2,7 +2,7 @@ import React from "react"
 
 import { useUsersPagination } from "@/features/users-list/hooks/useUsersPagination"
 import { UsersListTable } from "@/features/users-list/ui/UsersListTable"
-import { useGetUsersQuery } from "@/queries/usersgenerated"
+import { useGetUsersQuery } from "@/queries/allUsers/usersgenerated"
 import { Input } from "@/shared/ui/Input/Input"
 import Pagination from "@/shared/ui/pagination/Pagination"
 import Select from "@/shared/ui/Select/Select"

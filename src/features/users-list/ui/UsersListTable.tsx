@@ -2,11 +2,13 @@ import React from "react"
 
 import { tableHeaderOptions } from "@/features/users-list/CONSTs"
 import { ActionWithUserMenu } from "@/features/users-list/ui/ActionWithUserMenu"
+import { useUnbanUserMutation } from "@/queries/unBunUser/unBunUsergenerated"
 import { BanIcon } from "@/shared/animate-svg/ban"
 import { User } from "@/shared/types/graphTypes"
 import { Table } from "@/shared/ui/Table/TableRoot"
 import { formatDate } from "@/shared/utils/formatDate"
 import { SortDirection } from "@/types"
+import { useApolloClient } from "@apollo/client"
 
 interface Props {
   users: Omit<User, "profile">[]
@@ -19,7 +21,19 @@ export const UsersListTable = ({
   sortDirection,
   sortHandler,
 }: Props) => {
-  console.log(users)
+  const client = useApolloClient()
+
+  const [unbanUserMutation] = useUnbanUserMutation()
+  const unbunUserHandler = (userId: number) => {
+    void unbanUserMutation({
+      variables: {
+        userId: userId,
+      },
+      onCompleted: () => {
+        client.refetchQueries({ include: "active" })
+      },
+    })
+  }
 
   return (
     <div className="w-full">
@@ -34,7 +48,10 @@ export const UsersListTable = ({
             <Table.TableRow key={index}>
               <Table.TableCell>
                 <div className="flex gap-4 items-center">
-                  <div className="min-w-[50px]">
+                  <div
+                    className="min-w-[50px]"
+                    onClick={() => unbunUserHandler(user.id)}
+                  >
                     {user.userBan !== null && <BanIcon />}
                   </div>
                   <div>{user.id}</div>

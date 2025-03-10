@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client"
 
-const GET_USERS = gql`
+export const GET_USERS = gql`
   query GetUsers(
     $pageNumber: Int
     $pageSize: Int
