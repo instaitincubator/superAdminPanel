@@ -25,7 +25,6 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
   const client = useApolloClient()
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false)
 
-  console.log(popoverOpen)
   const [removeUserMutation] = useRemoveUserMutation()
   const [banUserMutation] = useBanUserMutation()
   const banUserHandler = () => {
