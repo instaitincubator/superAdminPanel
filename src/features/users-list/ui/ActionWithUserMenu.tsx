@@ -82,7 +82,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
                 className="hover:bg-success-500"
                 onClick={removeUserHandler}
               />
-              <div>Arе you sure?</div>
+              <div className="text-light-100">Arе you sure?</div>
               <XIcon
                 className="hover:bg-danger-500"
                 onClick={() => setPopoverOpen(false)}
@@ -101,7 +101,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
                 className="hover:bg-success-500"
                 onClick={banUserHandler}
               />
-              <div>Arе you sure?</div>
+              <div className="text-light-100">Arе you sure?</div>
               <XIcon
                 className="hover:bg-danger-500"
                 onClick={() => setPopoverOpen(false)}
