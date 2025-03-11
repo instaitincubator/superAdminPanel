@@ -195,4 +195,25 @@ export const russian = {
     paymentsList: "Список платежей",
     PostsList: "Список постов",
   },
+  admin: {
+    userList: {
+      banValue: {
+        notSelected: "Не выбран",
+        blocked: "Заблокирован",
+        notBlocked: "Не заблокирован",
+      },
+      actionMenu: {
+        deleteUser: "удалить пользователя",
+        confirmation: "Вы уверены?",
+        banUser: "забанить пользователя",
+        moreInformation: "подробнее",
+      },
+    },
+  },
+  common: {
+    pagination: {
+      show: "показать",
+      onPage: "на странице",
+    },
+  },
 }

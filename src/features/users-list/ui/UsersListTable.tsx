@@ -9,6 +9,7 @@ import { Table } from "@/shared/ui/Table/TableRoot"
 import { formatDate } from "@/shared/utils/formatDate"
 import { SortDirection } from "@/types"
 import { useApolloClient } from "@apollo/client"
+import Link from "next/link"
 
 interface Props {
   users: Omit<User, "profile">[]
@@ -57,7 +58,9 @@ export const UsersListTable = ({
                   <div>{user.id}</div>
                 </div>
               </Table.TableCell>
-              <Table.TableCell>{user.userName}</Table.TableCell>
+              <Table.TableCell>
+                <Link href={"/"}> {user.userName} </Link>
+              </Table.TableCell>
               <Table.TableCell>{formatDate(user.createdAt)}</Table.TableCell>
               <Table.TableCell className="w-full">
                 <ActionWithUserMenu

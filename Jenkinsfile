@@ -4,12 +4,12 @@ pipeline {
     agent any
     environment {
         ENV_TYPE = "production"
-        PORT = 3429
+        PORT = 3796
         NAMESPACE = "breezeapp-club"
         REGISTRY_HOSTNAME = "breezewave"
         REGISTRY = "registry.hub.docker.com"
-        PROJECT = "breezeapp"
-        DEPLOYMENT_NAME = "breezeapp-deployment"
+        PROJECT = "super-admin-panel"
+        DEPLOYMENT_NAME = "super-admin-panel-deployment"
         IMAGE_NAME = "${env.BUILD_ID}_${env.ENV_TYPE}_${env.GIT_COMMIT}"
         DOCKER_BUILD_NAME = "${env.REGISTRY_HOSTNAME}/${env.PROJECT}:${env.IMAGE_NAME}"
     }
@@ -19,6 +19,20 @@ pipeline {
             steps {
                 checkout scm
             }
+        }
+        stage('Unit tests') {
+             steps {
+                echo "Preparing started..."
+                  script {
+                      sh '''
+                         export NVM_DIR="$HOME/.nvm"
+                         [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+                         nvm use --lts
+                         yarn install
+                         yarn test
+                      '''
+                  }
+             }
         }
         stage('Build docker image') {
             steps {

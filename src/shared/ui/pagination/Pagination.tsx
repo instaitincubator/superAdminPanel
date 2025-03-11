@@ -1,5 +1,6 @@
 import React from "react"
 
+import { useTranslation } from "@/shared/hooks/useTranslation"
 import { PaginationParams } from "@/shared/types/utilTypes"
 import { DOTS, usePagination } from "@/shared/ui/pagination/usePagination"
 import Select from "@/shared/ui/Select/Select"
@@ -21,6 +22,8 @@ const Pagination: React.FC<PaginationParams> = ({
     siblingCount,
     totalCount,
   })
+
+  const { t } = useTranslation()
 
   const lastPage =
     paginationRange && paginationRange.length > 0
@@ -96,14 +99,14 @@ const Pagination: React.FC<PaginationParams> = ({
       </ul>
       {totalCount && totalCount > minItemsForPagination && (
         <div className="flex flex-row items-center justify-center ml-2">
-          <span className="mr-2">Show</span>
+          <span className="mr-2">{t.common.pagination.show}</span>
           <Select
             className="text-cyan-50"
             onChange={option => handlePageSizeChange(+option.value)}
             options={rangePagination}
             value={{ label: pageSize, value: pageSize }}
           />
-          <span className="ml-2">on page</span>
+          <span className="ml-2">{t.common.pagination.onPage}</span>
         </div>
       )}
     </div>

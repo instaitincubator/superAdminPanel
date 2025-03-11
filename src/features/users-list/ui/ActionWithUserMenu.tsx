@@ -7,6 +7,7 @@ import { BanIcon } from "@/shared/animate-svg/ban"
 import { CheckIcon } from "@/shared/animate-svg/check"
 import { DeleteIcon } from "@/shared/animate-svg/delete"
 import { XIcon } from "@/shared/animate-svg/x"
+import { useTranslation } from "@/shared/hooks/useTranslation"
 import {
   MorphingPopover,
   MorphingPopoverContent,
@@ -24,6 +25,7 @@ interface Props {
 export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
   const client = useApolloClient()
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false)
+  const { t } = useTranslation()
 
   const [removeUserMutation] = useRemoveUserMutation()
   const [banUserMutation] = useBanUserMutation()
@@ -73,7 +75,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
             <MorphingPopoverTrigger onClick={() => setPopoverOpen(true)}>
               <div className="flex items-center hover:text-accent-500 active:text-accent-900 text-light-500 gap-2 cursor-pointer">
                 <DeleteIcon />
-                <span>Delete User</span>
+                <span>{t.admin.userList.actionMenu.deleteUser}</span>
               </div>
             </MorphingPopoverTrigger>
             <MorphingPopoverContent className="w-full h-full bg-dark-300 hover:bg-dark-100 flex justify-between items-center text-bold-16">
@@ -81,7 +83,9 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
                 className="hover:bg-success-500"
                 onClick={removeUserHandler}
               />
-              <div className="text-light-100">Arе you sure?</div>
+              <div className="text-light-100">
+                {t.admin.userList.actionMenu.confirmation}
+              </div>
               <XIcon
                 className="hover:bg-danger-500"
                 onClick={() => setPopoverOpen(false)}
@@ -92,7 +96,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
             <MorphingPopoverTrigger>
               <div className="flex items-center hover:text-accent-500 active:text-accent-900 text-light-500 gap-2 cursor-pointer">
                 <BanIcon />
-                <span>Ban in the system</span>
+                <span>{t.admin.userList.actionMenu.banUser}</span>
               </div>
             </MorphingPopoverTrigger>
             <MorphingPopoverContent className="w-full h-full bg-dark-300 hover:bg-dark-100 flex justify-between items-center text-bold-16">
@@ -100,7 +104,9 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
                 className="hover:bg-success-500"
                 onClick={banUserHandler}
               />
-              <div className="text-light-100">Arе you sure?</div>
+              <div className="text-light-100">
+                {t.admin.userList.actionMenu.confirmation}
+              </div>
               <XIcon
                 className="hover:bg-danger-500"
                 onClick={() => setPopoverOpen(false)}
@@ -112,7 +118,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
             onClick={() => setPopoverOpen(false)}
           >
             <AlignCenterIcon />
-            <span>More information</span>
+            <span>{t.admin.userList.actionMenu.moreInformation}</span>
           </div>
         </div>
       </MorphingPopoverContent>

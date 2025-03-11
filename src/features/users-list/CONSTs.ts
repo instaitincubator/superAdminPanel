@@ -1,11 +1,5 @@
 import { SortDirection, UserBlockStatus } from "@/types"
 
-export const filterByBanOptions = [
-  { label: "Not selected", value: "ALL" },
-  { label: "Blocked", value: "BLOCKED" },
-  { label: "Not Blocked", value: "UNBLOCKED" },
-]
-
 export const tableHeaderOptions = [
   {
     key: "User ID",

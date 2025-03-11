@@ -192,5 +192,26 @@ Your rights to your content remain unaffected. We do not claim ownership of your
     search: "Search",
     statistics: "Statistics",
   },
+  admin: {
+    userList: {
+      banValue: {
+        notSelected: "Not selected",
+        blocked: "Blocked",
+        notBlocked: "Not Blocked",
+      },
+      actionMenu: {
+        deleteUser: "Delete User",
+        confirmation: "Arе you sure?",
+        banUser: "Ban in the system",
+        moreInformation: "More information",
+      },
+    },
+  },
+  common: {
+    pagination: {
+      show: "show",
+      onPage: "on Page",
+    },
+  },
 }
 export type LocaleType = typeof english

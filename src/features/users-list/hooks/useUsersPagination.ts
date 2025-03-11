@@ -1,13 +1,13 @@
 import { ChangeEvent, useEffect, useState } from "react"
 
-import {
-  defaultPaginationParams,
-  filterByBanOptions,
-} from "@/features/users-list/CONSTs"
+import { defaultPaginationParams } from "@/features/users-list/CONSTs"
+import { useTranslation } from "@/shared/hooks/useTranslation"
 import { Option } from "@/shared/ui/Select/types"
 import { SortDirection, UserBlockStatus } from "@/types"
 
 export const useUsersPagination = () => {
+  const { t } = useTranslation()
+
   const [paginationParams, setPaginationParams] = useState(
     defaultPaginationParams
   )
@@ -48,13 +48,18 @@ export const useUsersPagination = () => {
     setSearchInput(e.target.value)
   }
 
+  const filterByBanOptions = [
+    { label: t.admin.userList.banValue.notSelected, value: "ALL" },
+    { label: t.admin.userList.banValue.blocked, value: "BLOCKED" },
+    { label: t.admin.userList.banValue.notBlocked, value: "UNBLOCKED" },
+  ]
+
   const byBanSelectValue =
     filterByBanOptions.find(
       option => option.value === paginationParams.statusFilter
     ) || filterByBanOptions[0]
 
   return {
-    byBanSelectValue,
     searchInput,
     sortHandler,
     sortDirection,
@@ -63,5 +68,6 @@ export const useUsersPagination = () => {
     onByBanFilterChange,
     setPaginationParams,
     paginationParams,
+    byBanSelectValue,
   }
 }

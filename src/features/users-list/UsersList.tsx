@@ -3,21 +3,24 @@ import React from "react"
 import { useUsersPagination } from "@/features/users-list/hooks/useUsersPagination"
 import { UsersListTable } from "@/features/users-list/ui/UsersListTable"
 import { useGetUsersQuery } from "@/queries/allUsers/usersgenerated"
+import { useTranslation } from "@/shared/hooks/useTranslation"
 import { Input } from "@/shared/ui/Input/Input"
 import Pagination from "@/shared/ui/pagination/Pagination"
 import Select from "@/shared/ui/Select/Select"
 
 export const UsersList = () => {
+  const { t } = useTranslation()
+
   const {
-    byBanSelectValue,
     searchInput,
     sortHandler,
     sortDirection,
     onSearchTermChange,
-    filterByBanOptions,
     onByBanFilterChange,
     setPaginationParams,
     paginationParams,
+    byBanSelectValue,
+    filterByBanOptions,
   } = useUsersPagination()
 
   const { data: users } = useGetUsersQuery({ variables: paginationParams })
@@ -27,7 +30,7 @@ export const UsersList = () => {
       <div className="px-4 pt-4 flex gap-40">
         <Input
           type="search"
-          placeholder="search"
+          placeholder={t.sidebar.search}
           fullWidth
           value={searchInput}
           onChange={e => onSearchTermChange(e)}
