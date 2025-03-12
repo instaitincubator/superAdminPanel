@@ -1,81 +1,50 @@
-import { gql } from "@apollo/client"
-import * as Apollo from "@apollo/client"
+import * as Types from '../../types';
 
-import * as Types from "../../types"
-
-const defaultOptions = {} as const
-
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+const defaultOptions = {} as const;
 export type GetUsersQueryVariables = Types.Exact<{
-  pageNumber?: Types.InputMaybe<Types.Scalars["Int"]["input"]>
-  pageSize?: Types.InputMaybe<Types.Scalars["Int"]["input"]>
-  sortBy?: Types.InputMaybe<Types.Scalars["String"]["input"]>
-  searchTerm?: Types.InputMaybe<Types.Scalars["String"]["input"]>
-  sortDirection?: Types.InputMaybe<Types.SortDirection>
-  statusFilter?: Types.InputMaybe<Types.UserBlockStatus>
-}>
+  pageNumber?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  pageSize?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  sortBy?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  searchTerm?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  sortDirection?: Types.InputMaybe<Types.SortDirection>;
+  statusFilter?: Types.InputMaybe<Types.UserBlockStatus>;
+}>;
 
-export type GetUsersQuery = {
-  __typename?: "Query"
-  getUsers: {
-    __typename?: "UsersPaginationModel"
-    pagination: {
-      __typename?: "PaginationModel"
-      page: number
-      pageSize: number
-      pagesCount: number
-      totalCount: number
-    }
-    users: Array<{
-      __typename?: "User"
-      id: number
-      userName: string
-      email: string
-      createdAt: any
-      userBan?: {
-        __typename?: "UserBan"
-        createdAt: any
-        reason: string
-      } | null
-    }>
-  }
-}
+
+export type GetUsersQuery = { __typename?: 'Query', getUsers: { __typename?: 'UsersPaginationModel', pagination: { __typename?: 'PaginationModel', page: number, pageSize: number, pagesCount: number, totalCount: number }, users: Array<{ __typename?: 'User', id: number, userName: string, email: string, createdAt: any, userBan?: { __typename?: 'UserBan', createdAt: any, reason: string } | null }> } };
+
 
 export const GetUsersDocument = gql`
-  query GetUsers(
-    $pageNumber: Int
-    $pageSize: Int
-    $sortBy: String
-    $searchTerm: String
-    $sortDirection: SortDirection
-    $statusFilter: UserBlockStatus
+    query GetUsers($pageNumber: Int, $pageSize: Int, $sortBy: String, $searchTerm: String, $sortDirection: SortDirection, $statusFilter: UserBlockStatus) {
+  getUsers(
+    pageNumber: $pageNumber
+    pageSize: $pageSize
+    sortBy: $sortBy
+    sortDirection: $sortDirection
+    searchTerm: $searchTerm
+    statusFilter: $statusFilter
   ) {
-    getUsers(
-      pageNumber: $pageNumber
-      pageSize: $pageSize
-      sortBy: $sortBy
-      sortDirection: $sortDirection
-      searchTerm: $searchTerm
-      statusFilter: $statusFilter
-    ) {
-      pagination {
-        page
-        pageSize
-        pagesCount
-        totalCount
-      }
-      users {
-        id
-        userName
-        email
+    pagination {
+      page
+      pageSize
+      pagesCount
+      totalCount
+    }
+    users {
+      id
+      userName
+      email
+      createdAt
+      userBan {
         createdAt
-        userBan {
-          createdAt
-          reason
-        }
+        reason
       }
     }
   }
-`
+}
+    `;
 
 /**
  * __useGetUsersQuery__
@@ -98,55 +67,19 @@ export const GetUsersDocument = gql`
  *   },
  * });
  */
-export function useGetUsersQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-
-  return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(
-    GetUsersDocument,
-    options
-  )
-}
-
-export function useGetUsersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetUsersQuery,
-    GetUsersQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-
-  return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(
-    GetUsersDocument,
-    options
-  )
-}
-
-export function useGetUsersSuspenseQuery(
-  baseOptions?:
-    | Apollo.SkipToken
-    | Apollo.SuspenseQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>
-) {
-  const options =
-    baseOptions === Apollo.skipToken
-      ? baseOptions
-      : { ...defaultOptions, ...baseOptions }
-
-  return Apollo.useSuspenseQuery<GetUsersQuery, GetUsersQueryVariables>(
-    GetUsersDocument,
-    options
-  )
-}
-
-export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>
-export type GetUsersLazyQueryHookResult = ReturnType<
-  typeof useGetUsersLazyQuery
->
-export type GetUsersSuspenseQueryHookResult = ReturnType<
-  typeof useGetUsersSuspenseQuery
->
-export type GetUsersQueryResult = Apollo.QueryResult<
-  GetUsersQuery,
-  GetUsersQueryVariables
->
+export function useGetUsersQuery(baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
+      }
+export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
+        }
+export function useGetUsersSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
+        }
+export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
+export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
+export type GetUsersSuspenseQueryHookResult = ReturnType<typeof useGetUsersSuspenseQuery>;
+export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
