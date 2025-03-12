@@ -27,6 +27,7 @@
     "react": "^18.1.0",
     "react-bootstrap-table-loading": "^1.1.4",
     "react-dom": "^18",
+    "react-hook-form": "^7.54.2",
     "swiper": "^11.2.5",
     "uuid": "^11.1.0"
   },
