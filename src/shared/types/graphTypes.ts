@@ -27,6 +27,11 @@ interface Profile {
   avatars?: Avatar[]
 }
 
+export type Owner = {
+  firstName: string
+  lastName: string
+}
+
 interface Avatar {
   fileSize?: number
   height?: number

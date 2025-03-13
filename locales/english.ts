@@ -199,6 +199,9 @@ Your rights to your content remain unaffected. We do not claim ownership of your
         blocked: "Blocked",
         notBlocked: "Not Blocked",
       },
+      postsList: {
+        openDescription: 'click to read description',
+      },
       actionMenu: {
         deleteUser: "Delete User",
         confirmation: "Arе you sure?",

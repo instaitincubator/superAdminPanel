@@ -202,6 +202,9 @@ export const russian = {
         blocked: "Заблокирован",
         notBlocked: "Не заблокирован",
       },
+      postsList: {
+        openDescription: 'Прочитать описание',
+      },
       actionMenu: {
         deleteUser: "удалить пользователя",
         confirmation: "Вы уверены?",

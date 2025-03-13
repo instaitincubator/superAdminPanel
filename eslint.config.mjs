@@ -21,7 +21,7 @@ const eslintConfig = [
         rules: {
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-unused-vars': 'off',
-            '@typescript-eslint/no-non-null-asserted-optional-chain' : 'off',
+            '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
             'no-console': 'off',
             'react-hooks/rules-of-hooks': 'off',
             'arrow-parens': 'off',
@@ -29,7 +29,7 @@ const eslintConfig = [
             curly: ['error', 'all'],
             'import/extensions': [
                 'error',
-                {css: 'always', json: 'always', scss: 'always', svg: 'always'},
+                {css: 'never', json: 'always', scss: 'always', svg: 'always'},
             ],
             'import/no-duplicates': 'off',
             'import/order': 'off',
@@ -91,11 +91,11 @@ const eslintConfig = [
         },
         settings: {
             'import/parsers': {
-                '@typescript-eslint/parser': ['.ts', '.tsx'],
+                '@typescript-eslint/parser': ['.ts', '.tsx', '.css'],
             },
             'import/resolver': {
                 node: {
-                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
                     paths: ['src'],
                 },
                 typescript: {
