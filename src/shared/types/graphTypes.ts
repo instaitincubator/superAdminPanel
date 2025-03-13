@@ -277,7 +277,7 @@ interface MutationRemoveUserArgs {
   userId: number
 }
 
-interface MutationLoginAdminArgs {
+export interface MutationLoginAdminArgs {
   email: string
   password: string
 }
