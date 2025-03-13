@@ -1,30 +1,28 @@
-import { useEffect, useRef } from 'react'
-import { useForm } from 'react-hook-form'
-import { useTranslation } from '@/shared/hooks/useTranslation'
+import {useEffect, useRef} from 'react'
+import {useForm} from 'react-hook-form'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {VALID_EMAIL, VALID_PASSWORD} from "@/features/sign-in/constants";
 
 export interface SignInFormType {
     email: string
     password: string
 }
 
-
 export const useSignInForm = () => {
-    const { t } = useTranslation()
+    const {t} = useTranslation()
     const {
         clearErrors,
         control,
-        formState: { errors, isValid },
+        formState: {errors, isValid},
         handleSubmit,
-        reset,
         trigger,
     } = useForm<SignInFormType>({
-        defaultValues: { email: '' },
+        defaultValues: {email: VALID_EMAIL, password: VALID_PASSWORD},
         mode: 'onSubmit',
     })
     const hasInteracted = useRef(false)
 
     useEffect(() => {
-        reset({ email: '', password: '' })
         clearErrors()
     }, [t])
 
@@ -33,5 +31,5 @@ export const useSignInForm = () => {
         await trigger(fieldName)
     }
 
-    return { control, errors, handleSubmit, isValid, onFieldChange, trigger }
+    return {control, errors, handleSubmit, isValid, onFieldChange, trigger}
 }

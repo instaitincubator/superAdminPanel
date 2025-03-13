@@ -6,35 +6,22 @@ import Button from '@/shared/ui/Button/Button'
 import {Card} from '@/shared/ui/Card/Card'
 import {Input} from '@/shared/ui/Input/Input'
 import {useRouter} from 'next/router'
-import {gql, useMutation} from "@apollo/client";
-
-const SIGN_IN_MUTATION = gql`
-    mutation {
-        loginAdmin(email: "admin@gmail.com", password: "admin", ) {
-            logged
-        }
-    }
-`
-
-const VALID_EMAIL = "admin@gmail.com";
-const VALID_PASSWORD = "admin";
+import {useSignInMutation} from "@/queries/signIn/signIngenerated";
+import {VALID_EMAIL, VALID_PASSWORD} from "@/features/sign-in/constants";
 
 export const SignInForm = () => {
     const {t} = useTranslation()
     const router = useRouter()
     const {control, handleSubmit, onFieldChange} = useSignInForm()
-    const [signIn] = useMutation(SIGN_IN_MUTATION)
+    const [signInMutation, {error}] = useSignInMutation()
 
-    const onSubmit = async (data: SignInFormType) => {
-        if (data.email !== VALID_EMAIL || data.password !== VALID_PASSWORD) {
-            return;
-        }
+    const onSubmit = (data: SignInFormType) => {
         try {
-            const {data: {loginAdmin}} = await signIn({
+            void signInMutation({
                 variables: {email: data.email, password: data.password}
             })
-            if (loginAdmin && loginAdmin.logged) {
-                router.replace('/')
+            if (!error) {
+                void router.replace('home')
             }
         } catch (error) {
             console.error("Sign in error:", error)
@@ -64,6 +51,7 @@ export const SignInForm = () => {
                                     onFieldChange('email')
                                 }}
                                 placeholder={t.auth.emailPlaceholder}
+                                value={VALID_EMAIL}
                             />
                         )}
                     />
@@ -80,6 +68,7 @@ export const SignInForm = () => {
                                     onFieldChange('password')
                                 }}
                                 type="password"
+                                value={VALID_PASSWORD}
                             />
                         )}
                     />
