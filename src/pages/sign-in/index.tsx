@@ -1,12 +1,12 @@
-import { getLayout } from '@/app/layouts/mainLayout/Layout'
-import { SignInForm } from '@/features/sign-in/SignInForm'
+import { getLayout } from "@/app/layouts/mainLayout/Layout"
+import { SignInForm } from "@/features/sign-in/SignInForm"
 
 const SignIn = () => {
-    return (
-        <>
-            <SignInForm />
-        </>
-    )
+  return (
+    <>
+      <SignInForm />
+    </>
+  )
 }
 
 SignIn.getLayout = getLayout
