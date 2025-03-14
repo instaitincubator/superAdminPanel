@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect, useRef, useState} from "react";
-import {Swiper, SwiperRef, SwiperSlide} from "swiper/react"
 
 import {transition} from "@/features/posts-list/CONSTs";
+import PostSlider from "@/features/PostSlider/PostSlider";
 import {useGetPostsQuery} from "@/queries/allPosts/getPostsgenerated"
 import {useTranslation} from "@/shared/hooks/useTranslation";
 import {Disclosure, DisclosureContent, DisclosureTrigger,} from "@/shared/motion-primitives/disclosure"
@@ -9,7 +9,6 @@ import {Input} from "@/shared/ui/Input/Input";
 import {formatDate} from "@/shared/utils/formatDate";
 import {SortDirection} from "@/types"
 import Image from "next/image"
-import {Pagination} from 'swiper/modules'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -37,14 +36,6 @@ export const PostsList = () => {
     const lastPostId = posts.length > 0 ? posts[posts.length - 1]?.id : null;
     const observerRef = useRef<HTMLDivElement | null>(null);
 
-    const swiperRef = useRef<SwiperRef>(null)
-
-    const rightHandleClick = () => {
-        swiperRef?.current?.swiper.slideNext()
-    }
-    const leftHandleClick = () => {
-        swiperRef?.current?.swiper.slidePrev()
-    }
 
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -116,45 +107,7 @@ export const PostsList = () => {
                         key={post.id}
                     >
                         {post?.images?.length! > 1 ? (
-                            <>
-                                <Swiper
-                                    modules={[Pagination]}
-                                    pagination
-                                    ref={swiperRef}
-                                >
-                                    {post.images?.map((img, index) => {
-                                        return (
-                                            <SwiperSlide key={img.id}>
-                                                <Image
-                                                    alt={`image-${img.id}`}
-                                                    src={img.url!}
-                                                    className='w-full'
-                                                    height={img.height!}
-                                                    width={img.width!}
-                                                />
-                                            </SwiperSlide>
-                                        )
-                                    })}
-                                </Swiper>
-                                <div className="flex justify-between px-6">
-                                    <Image
-                                        alt="ArrowLeft"
-                                        className="absolute top-1/2 transform -translate-y-1/2 left-2 cursor-pointer z-10 "
-                                        height={24}
-                                        onClick={leftHandleClick}
-                                        src="/arrowLeftSlider.svg"
-                                        width={24}
-                                    />
-                                    <Image
-                                        alt="ArrowRight"
-                                        className="absolute top-1/2 transform -translate-y-1/2 right-2 cursor-pointer z-10"
-                                        height={24}
-                                        onClick={rightHandleClick}
-                                        src="/arrowRightSlider.svg"
-                                        width={24}
-                                    />
-                                </div>
-                            </>
+                            <PostSlider key={post.id} images={post.images} />
                         ) : (<Image
                             alt={'SlideImage'}
                             className="w-full"
