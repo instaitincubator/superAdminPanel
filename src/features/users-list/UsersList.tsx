@@ -15,12 +15,13 @@ export const UsersList = () => {
     searchInput,
     sortHandler,
     sortDirection,
-    onSearchTermChange,
+    setSearchInput,
     onByBanFilterChange,
-    setPaginationParams,
     paginationParams,
     byBanSelectValue,
     filterByBanOptions,
+    onPageChange,
+    onPageSizeChange,
   } = useUsersPagination()
 
   const { data: users } = useGetUsersQuery({ variables: paginationParams })
@@ -33,7 +34,7 @@ export const UsersList = () => {
           placeholder={t.sidebar.search}
           fullWidth
           value={searchInput}
-          onChange={e => onSearchTermChange(e)}
+          onChange={e => setSearchInput(e.target.value)}
         />
         <Select
           options={filterByBanOptions}
@@ -49,12 +50,8 @@ export const UsersList = () => {
       />
       <Pagination
         currentPage={users?.getUsers.pagination.page!}
-        onPageChange={(value: number) =>
-          setPaginationParams({ ...paginationParams, pageNumber: value })
-        }
-        onPageSizeChange={(value: number) =>
-          setPaginationParams({ ...paginationParams, pageSize: value })
-        }
+        onPageChange={onPageChange}
+        onPageSizeChange={onPageSizeChange}
         pageSize={users?.getUsers.pagination.pageSize!}
         siblingCount={1}
         totalCount={users?.getUsers.pagination.totalCount!}
