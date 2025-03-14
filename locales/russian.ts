@@ -212,6 +212,11 @@ export const russian = {
         moreInformation: "подробнее",
       },
     },
+    user: {
+      backLink: 'Назад к списку пользователей',
+      userId: 'ID пользователя',
+      createdAt: 'Дата регистрации'
+    }
   },
   common: {
     pagination: {

@@ -1,8 +1,9 @@
-import * as Types from '../../types';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Types from '../../types';
 const defaultOptions = {} as const;
+
 export type UnbanUserMutationVariables = Types.Exact<{
   userId: Types.Scalars['Int']['input'];
 }>;
@@ -37,6 +38,7 @@ export type UnbanUserMutationFn = Apollo.MutationFunction<UnbanUserMutation, Unb
  */
 export function useUnbanUserMutation(baseOptions?: Apollo.MutationHookOptions<UnbanUserMutation, UnbanUserMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
+
         return Apollo.useMutation<UnbanUserMutation, UnbanUserMutationVariables>(UnbanUserDocument, options);
       }
 export type UnbanUserMutationHookResult = ReturnType<typeof useUnbanUserMutation>;

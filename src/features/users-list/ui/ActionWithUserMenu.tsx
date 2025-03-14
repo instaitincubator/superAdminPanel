@@ -15,6 +15,7 @@ import {
 } from "@/shared/motion-primitives/morphing-popover"
 import { cn } from "@/shared/utils/cn"
 import { useApolloClient } from "@apollo/client"
+import {useRouter} from "next/router";
 
 interface Props {
   index: number
@@ -26,6 +27,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
   const client = useApolloClient()
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false)
   const { t } = useTranslation()
+  const router = useRouter()
 
   const [removeUserMutation] = useRemoveUserMutation()
   const [banUserMutation] = useBanUserMutation()
@@ -50,6 +52,11 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
         client.refetchQueries({ include: "active" })
       },
     })
+    setPopoverOpen(false)
+  }
+
+  const openUserPage = (userId: number) => {
+    router.push(`/users/${userId}`)
     setPopoverOpen(false)
   }
 
@@ -115,7 +122,7 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
           </MorphingPopover>
           <div
             className="flex items-center hover:text-accent-500 active:text-accent-900 text-light-500 gap-2 cursor-pointer m-auto"
-            onClick={() => setPopoverOpen(false)}
+            onClick={() => openUserPage(userId)}
           >
             <AlignCenterIcon />
             <span>{t.admin.userList.actionMenu.moreInformation}</span>

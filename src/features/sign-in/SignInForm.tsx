@@ -1,12 +1,13 @@
 import React from 'react'
 import {Controller} from 'react-hook-form'
+
 import {SignInFormType, useSignInForm} from '@/features/sign-in/useSignInForm'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import Button from '@/shared/ui/Button/Button'
 import {Card} from '@/shared/ui/Card/Card'
 import {Input} from '@/shared/ui/Input/Input'
-import {useRouter} from 'next/router'
 import {gql, useMutation} from "@apollo/client";
+import {useRouter} from 'next/router'
 
 const SIGN_IN_MUTATION = gql`
     mutation {
@@ -33,6 +34,7 @@ export const SignInForm = () => {
             const {data: {loginAdmin}} = await signIn({
                 variables: {email: data.email, password: data.password}
             })
+
             if (loginAdmin && loginAdmin.logged) {
                 router.replace('/')
             }
