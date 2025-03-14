@@ -8,16 +8,27 @@ export type RemoveUserMutationVariables = Types.Exact<{
   userId: Types.Scalars['Int']['input'];
 }>;
 
+import * as Types from "../../types"
+const defaultOptions = {} as const
 
-export type RemoveUserMutation = { __typename?: 'Mutation', removeUser: boolean };
+export type RemoveUserMutationVariables = Types.Exact<{
+  userId: Types.Scalars["Int"]["input"]
+}>
 
+export type RemoveUserMutation = {
+  __typename?: "Mutation"
+  removeUser: boolean
+}
 
 export const RemoveUserDocument = gql`
-    mutation RemoveUser($userId: Int!) {
-  removeUser(userId: $userId)
-}
-    `;
-export type RemoveUserMutationFn = Apollo.MutationFunction<RemoveUserMutation, RemoveUserMutationVariables>;
+  mutation RemoveUser($userId: Int!) {
+    removeUser(userId: $userId)
+  }
+`
+export type RemoveUserMutationFn = Apollo.MutationFunction<
+  RemoveUserMutation,
+  RemoveUserMutationVariables
+>
 
 /**
  * __useRemoveUserMutation__

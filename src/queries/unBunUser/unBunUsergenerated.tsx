@@ -8,16 +8,24 @@ export type UnbanUserMutationVariables = Types.Exact<{
   userId: Types.Scalars['Int']['input'];
 }>;
 
+import * as Types from "../../types"
+const defaultOptions = {} as const
 
-export type UnbanUserMutation = { __typename?: 'Mutation', unbanUser: boolean };
+export type UnbanUserMutationVariables = Types.Exact<{
+  userId: Types.Scalars["Int"]["input"]
+}>
 
+export type UnbanUserMutation = { __typename?: "Mutation"; unbanUser: boolean }
 
 export const UnbanUserDocument = gql`
-    mutation unbanUser($userId: Int!) {
-  unbanUser(userId: $userId)
-}
-    `;
-export type UnbanUserMutationFn = Apollo.MutationFunction<UnbanUserMutation, UnbanUserMutationVariables>;
+  mutation unbanUser($userId: Int!) {
+    unbanUser(userId: $userId)
+  }
+`
+export type UnbanUserMutationFn = Apollo.MutationFunction<
+  UnbanUserMutation,
+  UnbanUserMutationVariables
+>
 
 /**
  * __useUnbanUserMutation__

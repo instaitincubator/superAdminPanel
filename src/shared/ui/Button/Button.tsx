@@ -5,13 +5,13 @@ import {
   ForwardedRef,
   ReactElement,
   forwardRef,
-} from 'react'
+} from "react"
 
-import { BTNSIZES, VATIANCLASSES } from '@/shared/ui/Button/consts'
-import { ButtonSize, ButtonVariant, InferType } from '@/shared/ui/Button/types'
-import { cn } from '@/shared/utils/cn'
+import { BTNSIZES, VATIANCLASSES } from "@/shared/ui/Button/consts"
+import { ButtonSize, ButtonVariant, InferType } from "@/shared/ui/Button/types"
+import { cn } from "@/shared/utils/cn"
 
-export type ButtonProps<T extends ElementType = 'button'> = {
+export type ButtonProps<T extends ElementType = "button"> = {
   as?: T
   disabled?: boolean
   fullWidth?: boolean
@@ -20,23 +20,26 @@ export type ButtonProps<T extends ElementType = 'button'> = {
 } & ComponentPropsWithoutRef<T>
 
 const Button = forwardRef(
-  <T extends ElementType = 'button'>(props: ButtonProps<T>, ref: ForwardedRef<InferType<T>>) => {
+  <T extends ElementType = "button">(
+    props: ButtonProps<T>,
+    ref: ForwardedRef<InferType<T>>
+  ) => {
     const {
-      as: Component = 'button',
+      as: Component = "button",
       children,
       className,
       fullWidth = false,
       size,
-      variant = 'primary',
+      variant = "primary",
       ...rest
     } = props
 
     const classNames = cn(
-      'flex justify-center items-center relative no-underline cursor-pointer box-border rounded-[2px] py-[6px] px-[24px] text-h3 text-nowrap text-center',
+      "flex justify-center items-center relative no-underline cursor-pointer box-border rounded-[2px] py-[6px] px-[24px] text-h3 text-nowrap text-center",
       VATIANCLASSES[variant],
       className,
-      fullWidth && 'w-full',
-      BTNSIZES[size ?? 'm']
+      fullWidth && "w-full",
+      BTNSIZES[size ?? "m"]
     )
 
     return (
@@ -47,7 +50,7 @@ const Button = forwardRef(
   }
 )
 
-export default Button as <T extends ElementType = 'button'>(
+export default Button as <T extends ElementType = "button">(
   props: {
     ref?: ForwardedRef<ElementRef<T>>
   } & ButtonProps<T>
