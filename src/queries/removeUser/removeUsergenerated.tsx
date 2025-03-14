@@ -1,5 +1,12 @@
-import { gql } from "@apollo/client"
-import * as Apollo from "@apollo/client"
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+
+import * as Types from '../../types';
+const defaultOptions = {} as const;
+
+export type RemoveUserMutationVariables = Types.Exact<{
+  userId: Types.Scalars['Int']['input'];
+}>;
 
 import * as Types from "../../types"
 const defaultOptions = {} as const
@@ -40,24 +47,11 @@ export type RemoveUserMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useRemoveUserMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    RemoveUserMutation,
-    RemoveUserMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
+export function useRemoveUserMutation(baseOptions?: Apollo.MutationHookOptions<RemoveUserMutation, RemoveUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
 
-  return Apollo.useMutation<RemoveUserMutation, RemoveUserMutationVariables>(
-    RemoveUserDocument,
-    options
-  )
-}
-export type RemoveUserMutationHookResult = ReturnType<
-  typeof useRemoveUserMutation
->
-export type RemoveUserMutationResult = Apollo.MutationResult<RemoveUserMutation>
-export type RemoveUserMutationOptions = Apollo.BaseMutationOptions<
-  RemoveUserMutation,
-  RemoveUserMutationVariables
->
+        return Apollo.useMutation<RemoveUserMutation, RemoveUserMutationVariables>(RemoveUserDocument, options);
+      }
+export type RemoveUserMutationHookResult = ReturnType<typeof useRemoveUserMutation>;
+export type RemoveUserMutationResult = Apollo.MutationResult<RemoveUserMutation>;
+export type RemoveUserMutationOptions = Apollo.BaseMutationOptions<RemoveUserMutation, RemoveUserMutationVariables>;

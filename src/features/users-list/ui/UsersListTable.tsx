@@ -59,7 +59,7 @@ export const UsersListTable = ({
                 </div>
               </Table.TableCell>
               <Table.TableCell>
-                <Link href={"/"}> {user.userName} </Link>
+                <Link href={`/users/${user.id}`}> {user.userName} </Link>
               </Table.TableCell>
               <Table.TableCell>{formatDate(user.createdAt)}</Table.TableCell>
               <Table.TableCell className="w-full">

@@ -209,6 +209,11 @@ Your rights to your content remain unaffected. We do not claim ownership of your
         moreInformation: "More information",
       },
     },
+    user: {
+      backLink: 'Back to Users List',
+      userId: 'UserID',
+      createdAt: 'Profile Creation Date'
+    }
   },
   common: {
     pagination: {
