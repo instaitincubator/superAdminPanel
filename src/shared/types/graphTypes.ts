@@ -32,7 +32,7 @@ export type Owner = {
   lastName: string
 }
 
-interface Avatar {
+export interface Avatar {
   fileSize?: number
   height?: number
   width?: number

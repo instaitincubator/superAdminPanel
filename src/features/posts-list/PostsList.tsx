@@ -16,6 +16,7 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { PostImageWithSwiper } from "@/features/posts-list/ui/PostImageWithSwiper"
+import { PostDescription } from "@/features/posts-list/ui/PostDescription"
 
 export const PostsList = () => {
   const [searchInput, setSearchInput] = useState("")
@@ -107,33 +108,13 @@ export const PostsList = () => {
             key={post.id}
           >
             <PostImageWithSwiper images={post.images!} key={post.id} />
-            <Disclosure
-              className="absolute bottom-0 left-0 right-0 z-10"
-              transition={transition}
-            >
-              <DisclosureTrigger>
-                <div className="flex flex-col px-4 py-2 justify-center gap-2 bg-dark-700">
-                  <div className="text-regular-14">
-                    фотка + {post.postOwner.userName}
-                  </div>
-                  <div className="text-medium-14 text-light-900 flex justify-between">
-                    <div>{formatDate(post.updatedAt)}</div>
-                    {post.description.length > 0 && (
-                      <div className="opacity-50">
-                        {t.admin.userList.postsList.openDescription}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </DisclosureTrigger>
-              <DisclosureContent>
-                {post.description.length > 0 && (
-                  <div className="flex flex-col pb-4 text-[13px] bg-dark-700 ">
-                    {post.description}
-                  </div>
-                )}
-              </DisclosureContent>
-            </Disclosure>
+            <PostDescription
+              key={post.id}
+              description={post.description}
+              postOwnerUsername={post.postOwner.userName}
+              updatedAt={post.updatedAt}
+              postOwnerAvatars={post.postOwner.avatars!}
+            />
           </div>
         )
       })}
