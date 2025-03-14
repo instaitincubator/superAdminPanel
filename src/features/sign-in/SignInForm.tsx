@@ -1,13 +1,5 @@
-import React from 'react'
-import {Controller} from 'react-hook-form'
-
-import {SignInFormType, useSignInForm} from '@/features/sign-in/useSignInForm'
-import {useTranslation} from '@/shared/hooks/useTranslation'
-import Button from '@/shared/ui/Button/Button'
-import {Card} from '@/shared/ui/Card/Card'
-import {Input} from '@/shared/ui/Input/Input'
-import {gql, useMutation} from "@apollo/client";
-import {useRouter} from 'next/router'
+import React from "react"
+import { Controller } from "react-hook-form"
 
 import { VALID_EMAIL, VALID_PASSWORD } from "@/features/sign-in/constants"
 import { SignInFormType, useSignInForm } from "@/features/sign-in/useSignInForm"
@@ -24,22 +16,18 @@ export const SignInForm = () => {
   const { control, handleSubmit, onFieldChange } = useSignInForm()
   const [signInMutation, { error }] = useSignInMutation()
 
-    const onSubmit = async (data: SignInFormType) => {
-        if (data.email !== VALID_EMAIL || data.password !== VALID_PASSWORD) {
-            return;
-        }
-        try {
-            const {data: {loginAdmin}} = await signIn({
-                variables: {email: data.email, password: data.password}
-            })
-
-            if (loginAdmin && loginAdmin.logged) {
-                router.replace('/')
-            }
-        } catch (error) {
-            console.error("Sign in error:", error)
-        }
-    };
+  const onSubmit = (data: SignInFormType) => {
+    try {
+      void signInMutation({
+        variables: { email: data.email, password: data.password },
+      })
+      if (!error) {
+        void router.replace("home")
+      }
+    } catch (error) {
+      console.error("Sign in error:", error)
+    }
+  }
 
   return (
     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -59,7 +47,7 @@ export const SignInForm = () => {
                 label={t.auth.email}
                 onChange={e => {
                   field.onChange(e)
-                  onFieldChange("email")
+                  void onFieldChange("email")
                 }}
                 placeholder={t.auth.emailPlaceholder}
                 value={VALID_EMAIL}
@@ -76,7 +64,7 @@ export const SignInForm = () => {
                 label={t.auth.password}
                 onChange={e => {
                   field.onChange(e)
-                  onFieldChange("password")
+                  void onFieldChange("password")
                 }}
                 type="password"
                 value={VALID_PASSWORD}

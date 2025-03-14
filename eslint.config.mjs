@@ -39,42 +39,6 @@ const eslintConfig = [
             'no-duplicate-imports': 'error',
             'no-empty-pattern': 'off',
             'no-nested-ternary': 'off',
-            'padding-line-between-statements': [
-                'error',
-                {blankLine: 'always', next: 'return', prev: '*'},
-                {blankLine: 'always', next: '*', prev: ['const', 'let', 'var']},
-                {
-                    blankLine: 'any',
-                    next: ['const', 'let', 'var'],
-                    prev: ['const', 'let', 'var'],
-                },
-            ],
-            'perfectionist/sort-imports': [
-                'error',
-                {
-                    'customGroups': {
-                        type: {
-                            react: 'react',
-                        },
-                        value: {
-                            react: ['react', 'react-*'],
-                        },
-                    },
-                    groups: [
-                        'type',
-                        'react',
-                        'builtin',
-                        'external',
-                        'internal-type',
-                        'internal',
-                        'side-effect',
-                        'style',
-                    ],
-                    'newlinesBetween': 'always',
-                    order: 'asc',
-                    type: 'natural',
-                },
-            ],
             'prefer-const': 'error',
             'react/button-has-type': 'error',
             'react/display-name': 'off',

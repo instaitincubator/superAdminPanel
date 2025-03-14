@@ -1,33 +1,23 @@
+import * as Types from '../../types';
+
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-
-import * as Types from '../../types';
 const defaultOptions = {} as const;
-
 export type BanUserMutationVariables = Types.Exact<{
   userId: Types.Scalars['Int']['input'];
   banReason: Types.Scalars['String']['input'];
 }>;
 
-import * as Types from "../../types"
-const defaultOptions = {} as const
 
-export type BanUserMutationVariables = Types.Exact<{
-  userId: Types.Scalars["Int"]["input"]
-  banReason: Types.Scalars["String"]["input"]
-}>
+export type BanUserMutation = { __typename?: 'Mutation', banUser: boolean };
 
-export type BanUserMutation = { __typename?: "Mutation"; banUser: boolean }
 
 export const BanUserDocument = gql`
-  mutation BanUser($userId: Int!, $banReason: String!) {
-    banUser(userId: $userId, banReason: $banReason)
-  }
-`
-export type BanUserMutationFn = Apollo.MutationFunction<
-  BanUserMutation,
-  BanUserMutationVariables
->
+    mutation BanUser($userId: Int!, $banReason: String!) {
+  banUser(userId: $userId, banReason: $banReason)
+}
+    `;
+export type BanUserMutationFn = Apollo.MutationFunction<BanUserMutation, BanUserMutationVariables>;
 
 /**
  * __useBanUserMutation__
@@ -49,7 +39,6 @@ export type BanUserMutationFn = Apollo.MutationFunction<
  */
 export function useBanUserMutation(baseOptions?: Apollo.MutationHookOptions<BanUserMutation, BanUserMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-
         return Apollo.useMutation<BanUserMutation, BanUserMutationVariables>(BanUserDocument, options);
       }
 export type BanUserMutationHookResult = ReturnType<typeof useBanUserMutation>;
