@@ -97,7 +97,6 @@ const TableHeader = ({ columns, onSort, sort, ...res }: HeadProps) => {
           <HeadCell
             key={key}
             onClick={handleSort(key, sortable)}
-            sortable={sortable}
           >
             {title}
           </HeadCell>

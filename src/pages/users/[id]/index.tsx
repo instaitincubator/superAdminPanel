@@ -7,6 +7,7 @@ import Image from "next/image";
 import {useRouter} from "next/router";
 
 import {ArrowBack, noImage} from "../../../../public";
+import {ProfileSettingTabs} from "@/widgets/ProfileSettingTabs/ProfileSettingTabs";
 
 export default function User() {
     const router = useRouter()
@@ -43,7 +44,9 @@ export default function User() {
                 <UserInfo info={formatDate} title={t.admin.user.createdAt} />
             </div>
         </div>}
-        
+        <div className="pb-6 overflow-x-auto scroll-hidden pt-6 md:pt-9">
+            <ProfileSettingTabs />
+        </div>
     </div>
 }
 

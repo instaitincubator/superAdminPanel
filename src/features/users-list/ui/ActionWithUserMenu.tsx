@@ -56,6 +56,8 @@ export const ActionWithUserMenu = ({ usersLength, index, userId }: Props) => {
   }
 
   const openUserPage = (userId: number) => {
+    window.history.pushState({prevPath: router.asPath}, '', `/users/${userId}`)
+    console.log(router)
     router.push(`/users/${userId}`)
     setPopoverOpen(false)
   }

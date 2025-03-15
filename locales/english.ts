@@ -175,10 +175,10 @@ Your rights to your content remain unaffected. We do not claim ownership of your
     userNameSymbols: "Only letters, numbers, _ and - are allowed",
   },
   profileTabs: {
-    accountManagement: "Account Management",
-    devices: "Devices",
-    generalInformation: "General information",
-    myPayments: "My payment",
+    followers: "Followers",
+    followings: "Following",
+    uploadedPhotos: "Uploaded photos",
+    payments: "Payments",
   },
   sidebar: {
     create: "Create",
