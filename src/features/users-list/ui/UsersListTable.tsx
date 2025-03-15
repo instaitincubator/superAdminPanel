@@ -10,6 +10,7 @@ import { formatDate } from "@/shared/utils/formatDate"
 import { SortDirection } from "@/types"
 import { useApolloClient } from "@apollo/client"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 interface Props {
   users: Omit<User, "profile">[]
@@ -22,6 +23,7 @@ export const UsersListTable = ({
   sortDirection,
   sortHandler,
 }: Props) => {
+  const router = useRouter()
   const client = useApolloClient()
 
   const [unbanUserMutation] = useUnbanUserMutation()
@@ -59,7 +61,14 @@ export const UsersListTable = ({
                 </div>
               </Table.TableCell>
               <Table.TableCell>
-                <Link href={`/users/${user.id}`}> {user.userName} </Link>
+                <Link
+                  href={{
+                    pathname: `/users/${user.id}`,
+                    query: { ...router.query },
+                  }}
+                >
+                  {user.userName}
+                </Link>
               </Table.TableCell>
               <Table.TableCell>{formatDate(user.createdAt)}</Table.TableCell>
               <Table.TableCell className="w-full">

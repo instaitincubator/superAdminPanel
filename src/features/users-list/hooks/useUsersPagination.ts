@@ -50,6 +50,8 @@ export const useUsersPagination = () => {
         query: {
           ...router.query,
           searchTerm: searchInput,
+          pageNumber: 1,
+          pageSize: 10,
         },
       })
     }, 500)
@@ -64,6 +66,8 @@ export const useUsersPagination = () => {
         ...router.query,
         sortBy: e.key,
         sortDirection: e.direction,
+        pageNumber: 1,
+        pageSize: 10,
       },
     })
   }
@@ -79,6 +83,8 @@ export const useUsersPagination = () => {
       query: {
         ...router.query,
         statusFilter: e.value as UserBlockStatus,
+        pageNumber: 1,
+        pageSize: 10,
       },
     })
   }
