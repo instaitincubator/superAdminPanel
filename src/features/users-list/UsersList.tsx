@@ -1,40 +1,31 @@
 import React from "react"
 
-import { useUsersPagination } from "@/features/users-list/hooks/useUsersPagination"
 import { UsersListTable } from "@/features/users-list/ui/UsersListTable"
 import { useGetUsersQuery } from "@/queries/allUsers/usersgenerated"
 import { useTranslation } from "@/shared/hooks/useTranslation"
-import { Input } from "@/shared/ui/Input/Input"
 import Pagination from "@/shared/ui/pagination/Pagination"
 import Select from "@/shared/ui/Select/Select"
+import {useUsersPaginationCopy} from "@/features/users-list/hooks/useUsersPaginationCopy";
+import SearchWithQueries from "@/shared/ui/SearchWithQueries/SearchWithQueries";
 
 export const UsersList = () => {
   const { t } = useTranslation()
-
   const {
-    searchInput,
     sortHandler,
     sortDirection,
-    setSearchInput,
     onByBanFilterChange,
     paginationParams,
     byBanSelectValue,
     filterByBanOptions,
-    onPageChange,
-    onPageSizeChange,
-  } = useUsersPagination()
+  } = useUsersPaginationCopy()
 
   const { data: users } = useGetUsersQuery({ variables: paginationParams })
 
   return (
     <div className="flex flex-col gap-8 pb-[40px]">
       <div className="px-4 pt-4 flex gap-40">
-        <Input
-          type="search"
+        <SearchWithQueries
           placeholder={t.sidebar.search}
-          fullWidth
-          value={searchInput}
-          onChange={e => setSearchInput(e.target.value)}
         />
         <Select
           options={filterByBanOptions}
@@ -50,8 +41,6 @@ export const UsersList = () => {
       />
       <Pagination
         currentPage={users?.getUsers.pagination.page!}
-        onPageChange={onPageChange}
-        onPageSizeChange={onPageSizeChange}
         pageSize={users?.getUsers.pagination.pageSize!}
         siblingCount={1}
         totalCount={users?.getUsers.pagination.totalCount!}

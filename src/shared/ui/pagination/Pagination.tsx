@@ -6,15 +6,24 @@ import { DOTS, usePagination } from "@/shared/ui/pagination/usePagination"
 import Select from "@/shared/ui/Select/Select"
 
 import { ChevronLeftIcon, ChevronRightIcon } from "../../../../public"
+import {useRouter} from "next/router";
 
 const Pagination: React.FC<PaginationParams> = ({
   currentPage,
-  onPageChange,
-  onPageSizeChange,
   pageSize,
   siblingCount,
   totalCount,
 }) => {
+
+  const onPageSizeChange = (value: number) => {
+    void router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        pageSize: value,
+      },
+    })
+  }
   const paginationRange = usePagination({
     currentPage,
     onPageSizeChange,
@@ -24,6 +33,7 @@ const Pagination: React.FC<PaginationParams> = ({
   })
 
   const { t } = useTranslation()
+  const router = useRouter()
 
   const lastPage =
     paginationRange && paginationRange.length > 0
@@ -43,7 +53,17 @@ const Pagination: React.FC<PaginationParams> = ({
     return null
   }
   const handlePageSizeChange = (value: number) => {
-    onPageSizeChange(value)
+      onPageSizeChange(value)
+  }
+
+  const onPageChange = (value: number) => {
+    void router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        pageNumber: value,
+      },
+    })
   }
 
   return (
