@@ -64,7 +64,6 @@ export const UsersListTable = ({
                 <Link
                   href={{
                     pathname: `/users/${user.id}`,
-                    query: { ...router.query },
                   }}
                 >
                   {user.userName}
