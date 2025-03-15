@@ -178,10 +178,10 @@ export const russian = {
     userNameSymbols: "Разрешены только буквы, цифры, _ и -",
   },
   profileTabs: {
-    accountManagement: "Управление аккаунтом",
-    devices: "Устройства",
-    generalInformation: "Общая информация",
-    myPayments: "Мои платежи",
+    followers: "Подписчики",
+    followings: "Подписки",
+    uploadedPhotos: "Загруженные фотографии",
+    payments: "Платежи",
   },
   sidebar: {
     create: "Создать",
