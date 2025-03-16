@@ -1,15 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react"
-
-import { transition } from "@/features/posts-list/CONSTs"
 import { useGetPostsQuery } from "@/queries/allPosts/getPostsgenerated"
 import { useTranslation } from "@/shared/hooks/useTranslation"
-import {
-  Disclosure,
-  DisclosureContent,
-  DisclosureTrigger,
-} from "@/shared/motion-primitives/disclosure"
 import { Input } from "@/shared/ui/Input/Input"
-import { formatDate } from "@/shared/utils/formatDate"
 import { SortDirection } from "@/types"
 
 import "swiper/css"
@@ -22,12 +14,17 @@ export const PostsList = () => {
   const [searchInput, setSearchInput] = useState("")
   const { t } = useTranslation()
 
+  const savedCursorId =
+    typeof window !== "undefined"
+      ? localStorage.getItem("endCursorPostId")
+      : null
+
   const [postsPaginationParams, setPostsPaginationParams] = useState({
-    pageSize: 10,
+    pageSize: 16,
     sortBy: "createdAt",
     sortDirection: SortDirection.Asc,
     searchTerm: "",
-    endCursorPostId: 1,
+    endCursorPostId: savedCursorId ? Number(savedCursorId) : 1,
   })
   const { data, fetchMore } = useGetPostsQuery({
     variables: postsPaginationParams,
@@ -59,9 +56,11 @@ export const PostsList = () => {
     const observer = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting) {
+          localStorage.setItem("endCursorPostId", String(lastPostId))
+
           void fetchMore({
             variables: {
-              endCursorPostId: lastPostId, // Загружаем следующую порцию данных
+              endCursorPostId: lastPostId,
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) {
@@ -99,7 +98,7 @@ export const PostsList = () => {
         onChange={e => onSearchTermChange(e)}
       />
       {data?.getPosts.items.map((post, index) => {
-        const isLastPost = index === posts.length - 1 // Проверяем, последний ли это элемент
+        const isLastPost = index === posts.length - 1
 
         return (
           <div
@@ -110,6 +109,7 @@ export const PostsList = () => {
             <PostImageWithSwiper images={post.images!} key={post.id} />
             <PostDescription
               key={post.id}
+              postOwnerId={post.ownerId}
               description={post.description}
               postOwnerUsername={post.postOwner.userName}
               updatedAt={post.updatedAt}

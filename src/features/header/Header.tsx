@@ -1,14 +1,30 @@
-import React, { ComponentProps } from "react"
+import React, { ComponentProps, useEffect } from "react"
 
 import { LanguageSelect } from "@/features/language-select/LanguageSelect"
 import { TextEffect } from "@/shared/motion-primitives/text-effect"
 import { cn } from "@/shared/utils/cn"
+import { useRouter } from "next/router"
 
 export type HeaderProps = {
   isLoading?: boolean
 } & ComponentProps<"header">
 
 export const Header = ({ className, ...rest }: HeaderProps) => {
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (!url.startsWith("/posts")) {
+        localStorage.removeItem("endCursorPostId")
+      }
+    }
+
+    router.events.on("routeChangeStart", handleRouteChange)
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange)
+    }
+  }, [])
   return (
     <header
       {...rest}
