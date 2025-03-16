@@ -4,7 +4,6 @@ import CustomLink from "@/features/SideBar/Custom-link/CustomLink"
 import { AnimateUser } from "@/shared/animate-svg/AnimateUser"
 import { Instagram } from "@/shared/animate-svg/Instagram"
 import { Money } from "@/shared/animate-svg/Money"
-import { Trending } from "@/shared/animate-svg/Trending"
 import { useTranslation } from "@/shared/hooks/useTranslation"
 import { useRouter } from "next/router"
 
@@ -26,14 +25,6 @@ export const SideBar = () => {
         href="/users"
         setActiveLink={setActiveLink}
         title={t.sidebar.myProfile}
-      />
-      <CustomLink
-        activeLink={activeLink}
-        alt={t.sidebar.statistics}
-        child1={<Trending />}
-        href="/statistics"
-        setActiveLink={setActiveLink}
-        title={t.sidebar.statistics}
       />
       <CustomLink
         activeLink={activeLink}

@@ -23,6 +23,7 @@ export const SignInForm = () => {
       })
       if (!error) {
         void router.replace("home")
+        localStorage.setItem("isLoggedIn", "true")
       }
     } catch (error) {
       console.error("Sign in error:", error)
