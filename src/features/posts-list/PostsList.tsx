@@ -14,17 +14,12 @@ export const PostsList = () => {
   const [searchInput, setSearchInput] = useState("")
   const { t } = useTranslation()
 
-  const savedCursorId =
-    typeof window !== "undefined"
-      ? localStorage.getItem("endCursorPostId")
-      : null
-
   const [postsPaginationParams, setPostsPaginationParams] = useState({
     pageSize: 16,
     sortBy: "createdAt",
     sortDirection: SortDirection.Asc,
     searchTerm: "",
-    endCursorPostId: savedCursorId ? Number(savedCursorId) : 1,
+    endCursorPostId: 1,
   })
   const { data, fetchMore } = useGetPostsQuery({
     variables: postsPaginationParams,
@@ -56,8 +51,6 @@ export const PostsList = () => {
     const observer = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting) {
-          localStorage.setItem("endCursorPostId", String(lastPostId))
-
           void fetchMore({
             variables: {
               endCursorPostId: lastPostId,
