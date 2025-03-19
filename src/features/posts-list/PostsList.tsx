@@ -101,6 +101,7 @@ export const PostsList = () => {
           >
             <PostImageWithSwiper images={post.images!} key={post.id} />
             <PostDescription
+              postOwnerBanStatus={post.userBan}
               key={post.id}
               postOwnerId={post.ownerId}
               description={post.description}

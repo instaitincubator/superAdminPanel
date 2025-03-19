@@ -9,6 +9,8 @@ import { useTranslation } from "@/shared/hooks/useTranslation"
 import { Avatar } from "@/types"
 import { UserAvatarForPosts } from "@/features/posts-list/ui/UserAvatarForPosts"
 import Link from "next/link"
+import { BanIcon } from "@/shared/animate-svg/ban"
+import React from "react"
 
 interface Props {
   updatedAt: string
@@ -16,6 +18,7 @@ interface Props {
   postOwnerUsername: string
   postOwnerAvatars?: Avatar[]
   postOwnerId?: number
+  postOwnerBanStatus: any
 }
 
 export const PostDescription = ({
@@ -24,6 +27,7 @@ export const PostDescription = ({
   updatedAt,
   postOwnerId,
   postOwnerAvatars,
+  postOwnerBanStatus,
 }: Props) => {
   const { t } = useTranslation()
   return (
@@ -33,18 +37,22 @@ export const PostDescription = ({
     >
       <DisclosureTrigger>
         <div className="flex flex-col px-4 py-2 justify-center gap-2 bg-dark-700">
-          <Link
-            href={{
-              pathname: `/users/${postOwnerId}`,
-            }}
-            className="text-regular-14 flex items-center gap-4"
-          >
-            <UserAvatarForPosts
-              postOwnerAvatars={postOwnerAvatars}
-              postOwnerUsername={postOwnerUsername}
-            />
-            <span className="text-regular-14">{postOwnerUsername}</span>
-          </Link>
+          <div className="flex justify-between">
+            <Link
+              href={{
+                pathname: `/users/${postOwnerId}`,
+              }}
+              className="text-regular-14 flex items-center gap-4"
+            >
+              <UserAvatarForPosts
+                postOwnerAvatars={postOwnerAvatars}
+                postOwnerUsername={postOwnerUsername}
+              />
+              <span className="text-regular-14">{postOwnerUsername}</span>
+            </Link>
+            {postOwnerBanStatus !== null && <BanIcon />}
+          </div>
+
           <div className="text-medium-14 text-light-900 flex justify-between">
             <div>{formatDate(updatedAt)}</div>
             {description.length > 0 && (

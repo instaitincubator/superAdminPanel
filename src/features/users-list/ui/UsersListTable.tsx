@@ -10,7 +10,6 @@ import { formatDate } from "@/shared/utils/formatDate"
 import { SortDirection } from "@/types"
 import { useApolloClient } from "@apollo/client"
 import Link from "next/link"
-import { useRouter } from "next/router"
 
 interface Props {
   users: Omit<User, "profile">[]
@@ -23,7 +22,6 @@ export const UsersListTable = ({
   sortDirection,
   sortHandler,
 }: Props) => {
-  const router = useRouter()
   const client = useApolloClient()
 
   const [unbanUserMutation] = useUnbanUserMutation()
