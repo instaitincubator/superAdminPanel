@@ -5,6 +5,7 @@ import {Table} from "@/shared/ui/Table/TableRoot"
 import {SortDirection, SubscriptionPaymentsModel} from "@/types"
 import {formatDate} from "@/shared/utils/formatDate"
 import {Filter} from "@/shared/icons/filter";
+import Image from "next/image";
 
 interface Props {
     sortHandler: (e: { direction: "asc" | "desc"; key: string }) => void
@@ -41,8 +42,14 @@ export const PaymentsListTable = ({
                                         />
                                     ) : (
                                         <div
-                                            className="w-[36px] h-[36px] bg-gray-200 rounded-full flex items-center justify-center mr-2">
-                                            <span className="text-gray-400 text-xs ms-2">No Img</span>
+                                            className="mr-2">
+                                            <Image
+                                                src={"/avatar.png"}
+                                                alt={`avatar`}
+                                                width={36}
+                                                height={36}
+                                                className="rounded-full"
+                                            />
                                         </div>
                                     )}
                                     <span>{payment.userName}</span>
