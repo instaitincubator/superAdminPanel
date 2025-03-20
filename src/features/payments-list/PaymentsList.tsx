@@ -6,7 +6,6 @@ import {Input} from "@/shared/ui/Input/Input";
 import {useGetPaymentsQuery} from "@/queries/paymentsList/paymentsListgenerated";
 import Pagination from "@/shared/ui/pagination/Pagination";
 import {usePaginationParams} from "@/shared/hooks/usePaginationParams";
-import {AutoUbdate} from "@/features/payments-list/ui/AutoUbdate";
 
 export const PaymentsList = () => {
     const [searchInput, setSearchInput] = useState("")
@@ -34,9 +33,6 @@ export const PaymentsList = () => {
 
     return (
         <div className="flex flex-col gap-8 pb-[40px]">
-            <div className="flex pl-[1125px]">
-                <AutoUbdate/>
-            </div>
             <div className="px-4 flex gap-40">
                 <Input
                     type="search"
