@@ -28,7 +28,7 @@ export const PaymentsListTable = ({
                     <div className="ml-[4px]"><Filter/></div>
                 </div>
             ),
-            key: 'UserName', sortable: true
+            key: 'userName', sortable: true
         },
         {
             title: (
@@ -37,7 +37,7 @@ export const PaymentsListTable = ({
                     <div className="ml-[4px]"><Filter/></div>
                 </div>
             ),
-            key: 'UserName', sortable: true
+            key: 'createdAt', sortable: true
         },
         {
             title: (
@@ -46,7 +46,7 @@ export const PaymentsListTable = ({
                     <div className="ml-[4px]"><Filter/></div>
                 </div>
             ),
-            key: 'UserName', sortable: true
+            key: 'amount', sortable: true
         },
         {
             title: (
@@ -55,7 +55,7 @@ export const PaymentsListTable = ({
                     <div className="ml-[4px]"><Filter/></div>
                 </div>
             ),
-            key: 'UserName', sortable: true
+            key: 'subscription', sortable: true
         },
         {
             title: (
@@ -64,7 +64,7 @@ export const PaymentsListTable = ({
                     <div className="ml-[4px]"><Filter/></div>
                 </div>
             ),
-            key: 'UserName', sortable: true
+            key: 'paymentMethod', sortable: true
         },
     ]
 
