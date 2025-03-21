@@ -66,11 +66,22 @@ export const PaymentsListTable = ({
             ),
             key: 'UserName', sortable: true
         },
-        // {title: t.paymentsList.createdAt, key: 'createdAt', sortable: true},
-        // {title: t.paymentsList.amount, key: 'amount', sortable: true},
-        // {title: t.paymentsList.Subscription, key: 'Subscription', sortable: true},
-        // {title: t.paymentsList.paymentMethod, key: 'paymentMethod', sortable: true},
     ]
+
+    const subscription = (payment: SubscriptionPaymentsModel) => {
+        switch (payment.amount) {
+            case 1:
+                return `7 ${t.paymentsList.days}`
+            case 10:
+                return `30 ${t.paymentsList.days}`
+            case 50:
+                return `120 ${t.paymentsList.days}`
+            case 100:
+                return `365 ${t.paymentsList.days}`
+            default:
+                return `${t.paymentsList.unknownPayment}`
+        }
+    }
 
     return (
         <div className="w-full">
@@ -113,21 +124,9 @@ export const PaymentsListTable = ({
                             </Table.TableCell>
 
                             <Table.TableCell>{`${payment.amount} $`}</Table.TableCell>
-                            <Table.TableCell>{(() => {
-                                switch (payment.amount) {
-                                    case 1:
-                                        return `7 ${t.paymentsList.days}`
-                                    case 10:
-                                        return `30 ${t.paymentsList.days}`
-                                    case 50:
-                                        return `120 ${t.paymentsList.days}`
-                                    case 100:
-                                        return `365 ${t.paymentsList.days}`
-                                    default:
-                                        return `${t.paymentsList.unknownPayment}`
-                                }
-                            })()
-                            }</Table.TableCell>
+
+                            <Table.TableCell>{subscription(payment)}</Table.TableCell>
+
                             <Table.TableCell>{payment.paymentMethod}</Table.TableCell>
                         </Table.TableRow>
                     ))}
