@@ -45,7 +45,7 @@ export default function User() {
             </div>
         </div>}
         <div className="pb-6 overflow-x-auto scroll-hidden pt-6 md:pt-9">
-            <ProfileSettingTabs />
+            <ProfileSettingTabs route={router.query.tab ? router.query.tab as string : 'uploaded-photos'} userId={Number(router.query.id) }/>
         </div>
     </div>
 }

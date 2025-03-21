@@ -5,4 +5,5 @@ export type PaginationParams = {
   pageSize: number
   siblingCount: number
   totalCount: number | undefined
+  withReplace?: boolean
 }
