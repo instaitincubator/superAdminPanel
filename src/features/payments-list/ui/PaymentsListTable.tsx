@@ -21,17 +21,60 @@ export const PaymentsListTable = ({
     const {t} = useTranslation()
 
     const translatedHeader = [
-        {title: t.paymentsList.Username, key: 'UserName', sortable: true},
-        {title: t.paymentsList.createdAt, key: 'createdAt', sortable: true},
-        {title: t.paymentsList.amount, key: 'amount', sortable: true},
-        {title: t.paymentsList.Subscription, key: 'Subscription', sortable: true},
-        {title: t.paymentsList.paymentMethod, key: 'paymentMethod', sortable: true},
+        {
+            title: (
+                <div className="flex items-center">
+                    <span>{t.paymentsList.Username}</span>
+                    <div className="ml-[4px]"><Filter/></div>
+                </div>
+            ),
+            key: 'UserName', sortable: true
+        },
+        {
+            title: (
+                <div className="flex items-center">
+                    <span>{t.paymentsList.createdAt}</span>
+                    <div className="ml-[4px]"><Filter/></div>
+                </div>
+            ),
+            key: 'UserName', sortable: true
+        },
+        {
+            title: (
+                <div className="flex items-center">
+                    <span>{t.paymentsList.amount}</span>
+                    <div className="ml-[4px]"><Filter/></div>
+                </div>
+            ),
+            key: 'UserName', sortable: true
+        },
+        {
+            title: (
+                <div className="flex items-center">
+                    <span>{t.paymentsList.Subscription}</span>
+                    <div className="ml-[4px]"><Filter/></div>
+                </div>
+            ),
+            key: 'UserName', sortable: true
+        },
+        {
+            title: (
+                <div className="flex items-center">
+                    <span>{t.paymentsList.paymentMethod}</span>
+                    <div className="ml-[4px]"><Filter/></div>
+                </div>
+            ),
+            key: 'UserName', sortable: true
+        },
+        // {title: t.paymentsList.createdAt, key: 'createdAt', sortable: true},
+        // {title: t.paymentsList.amount, key: 'amount', sortable: true},
+        // {title: t.paymentsList.Subscription, key: 'Subscription', sortable: true},
+        // {title: t.paymentsList.paymentMethod, key: 'paymentMethod', sortable: true},
     ]
 
     return (
         <div className="w-full">
             <Table.TableRoot>
-                <Filter/>
                 <Table.TableHeader
                     columns={translatedHeader}
                     onSort={e => sortHandler(e!)}
