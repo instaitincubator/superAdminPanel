@@ -10,10 +10,6 @@ import Image from "next/image";
 export const Photos = () => {
 
     const router = useRouter()
-    const savedCursorId =
-        typeof window !== "undefined"
-            ? localStorage.getItem("endCursorId")
-            : undefined
     const [photosPaginationParams, setPhotosPaginationParams] = useState({
         userId: Number(router.query?.id) as number,
     })
@@ -45,7 +41,6 @@ export const Photos = () => {
         const observer = new IntersectionObserver(
             entries => {
                 if (entries[0].isIntersecting) {
-                    localStorage.setItem("endCursorId", String(lastId))
 
                     void fetchMore({
                         variables: {
