@@ -8,7 +8,7 @@ import {useTranslation} from "@/shared/hooks/useTranslation";
 
 interface Props {
     sortHandler: (e: { direction: "asc" | "desc"; key: string }) => void
-      sortDirection: { direction: SortDirection; key: string }
+    sortDirection: { direction: SortDirection; key: string }
     payments: SubscriptionPaymentsModel[]
 }
 
