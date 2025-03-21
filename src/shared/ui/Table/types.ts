@@ -3,7 +3,7 @@ import { ComponentProps } from "react"
 export type Column = {
   key: string
   sortable?: boolean
-  title: string
+  title: string | JSX.Element
 }
 export type Sort = {
   direction: "asc" | "desc"
