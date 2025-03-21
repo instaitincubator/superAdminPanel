@@ -28,7 +28,6 @@ export const Tabs = ({
       className
     ),
   }
-
   return (
     <RadixTabs.Root defaultValue={defaultValue} onValueChange={onValueChange} value={value}>
       <RadixTabs.List className={classNames.list}>

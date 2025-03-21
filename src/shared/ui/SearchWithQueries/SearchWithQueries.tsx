@@ -7,9 +7,11 @@ import {useRouter} from "next/router";
 const SearchWithQueries = ({placeholder}: {placeholder:string}) => {
     const router = useRouter()
     const [searchInput, setSearchInput] = useState(router.query.searchTerm ? router.query.searchTerm :"")
+    const [isChanged, setIsChanged] = useState(false)
 
     const changeSearchString = (e:ChangeEvent<HTMLInputElement >) => {
         setSearchInput(e.target.value)
+        if (!isChanged) {setIsChanged(true)}
     }
 
     useEffect(() => {
@@ -25,7 +27,7 @@ const SearchWithQueries = ({placeholder}: {placeholder:string}) => {
                 })
             }, 500)
             return () => clearTimeout(handler)
-        } else {
+        } else if (!searchInput && isChanged) {
             const oldQueries = {...router.query}
             delete oldQueries.searchTerm
             const handler = setTimeout(() => {
@@ -48,6 +50,7 @@ const SearchWithQueries = ({placeholder}: {placeholder:string}) => {
             fullWidth
             value={searchInput}
             onChange={changeSearchString}
+
         />
     );
 };

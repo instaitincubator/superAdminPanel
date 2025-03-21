@@ -1,8 +1,14 @@
+import { UserTabs } from '@/features/UserTabs/UserTabs'
 import { useTranslation } from '@/shared/hooks/useTranslation'
 import { Tabs } from '@/shared/ui/Tabs'
 import { useRouter } from 'next/router'
 
-export const ProfileSettingTabs = () => {
+type Props = {
+    route:string
+    userId: number
+}
+
+export const ProfileSettingTabs = ({route, userId} : Props) => {
     const { t } = useTranslation()
     const optionArray = [
         { label: t.profileTabs.uploadedPhotos, value: 'uploaded-photos' },
@@ -13,16 +19,17 @@ export const ProfileSettingTabs = () => {
 
     const router = useRouter()
     const changeMenu = (value: string) => {
-        // router.push(`/public-profile/settings/${value}`)
+        router.replace(`/users/${userId}?tab=${value}`)
     }
 
     return (
         <div>
             <Tabs
-                defaultValue="general-information"
+                defaultValue={route}
                 onValueChange={changeMenu}
                 options={optionArray}
             ></Tabs>
+            <UserTabs query={route} userId={userId} />
         </div>
     )
 }

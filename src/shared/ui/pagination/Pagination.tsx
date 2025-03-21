@@ -13,16 +13,22 @@ const Pagination: React.FC<PaginationParams> = ({
   pageSize,
   siblingCount,
   totalCount,
+  withReplace
 }) => {
 
   const onPageSizeChange = (value: number) => {
-    void router.push({
+    const pushedRoute = {
       pathname: router.pathname,
       query: {
         ...router.query,
         pageSize: value,
       },
-    })
+    }
+    if (withReplace) {
+      void router.replace(pushedRoute)
+    } else {
+      void router.push(pushedRoute)
+    }
   }
   const paginationRange = usePagination({
     currentPage,
@@ -57,13 +63,21 @@ const Pagination: React.FC<PaginationParams> = ({
   }
 
   const onPageChange = (value: number) => {
-    void router.push({
+
+    const pushedRoute = {
       pathname: router.pathname,
       query: {
         ...router.query,
         pageNumber: value,
       },
-    })
+    }
+
+    if (withReplace) {
+      void router.replace(pushedRoute)
+    } else {
+      void router.push(pushedRoute)
+    }
+
   }
 
   return (
