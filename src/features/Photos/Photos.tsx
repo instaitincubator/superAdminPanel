@@ -13,26 +13,14 @@ export const Photos = () => {
     const [photosPaginationParams, setPhotosPaginationParams] = useState({
         userId: Number(router.query?.id) as number,
     })
-    const {fetchMore} = useGetUserPhotosQuery({
+    const {data, fetchMore} = useGetUserPhotosQuery({
         variables:  photosPaginationParams
     })
-    const [data, setData] = useState<GetUserPhotosQuery>()
-    const [getData] = useGetUserPhotosLazyQuery({
-        variables:  photosPaginationParams
-    })
-    useEffect(() => {
-
-        if (router.query.id) {
-           getData().then(res=>{
-               setData(res.data)
-           })
-        }
-    }, [router.query.id]);
 
     const posts = data?.getPostsByUser.items || []
-    const lastId = posts.length > 0 ? posts[posts.length - 1]?.id : null
+    const lastId = posts.length > 0 ? posts[posts.length - 1].id : null
     const observerRef = useRef<HTMLDivElement | null>(null)
-
+    console.log(lastId)
     useEffect(() => {
         if (!observerRef.current || !lastId) {
             return
