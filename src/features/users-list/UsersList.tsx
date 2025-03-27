@@ -23,12 +23,13 @@ export const UsersList = () => {
     }
     const queries =
       e.value === UserBlockStatus.All
-        ? { ...oldQueries, pageNumber: 1 }
+        ? { ...oldQueries }
         : {
             ...oldQueries,
             statusFilter: e.value as UserBlockStatus,
             pageNumber: 1,
           }
+
     void router.push({
       pathname: router.pathname,
       query: queries,
