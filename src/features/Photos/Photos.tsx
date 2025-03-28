@@ -1,11 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-    GetUserPhotosQuery,
-    useGetUserPhotosLazyQuery,
-    useGetUserPhotosQuery
-} from "@/queries/userPhotos/userPhotosgenerated";
+import {useGetUserPhotosQuery} from "@/queries/userPhotos/userPhotosgenerated";
 import {useRouter} from "next/router";
 import Image from "next/image";
+import {ImagePost} from "@/shared/types/graphTypes";
 
 export const Photos = () => {
 
@@ -20,7 +17,7 @@ export const Photos = () => {
     const posts = data?.getPostsByUser.items || []
     const lastId = posts.length > 0 ? posts[posts.length - 1].id : null
     const observerRef = useRef<HTMLDivElement | null>(null)
-    console.log(lastId)
+
     useEffect(() => {
         if (!observerRef.current || !lastId) {
             return
@@ -44,8 +41,8 @@ export const Photos = () => {
                                 getPostsByUser: {
                                     ...fetchMoreResult.getPostsByUser,
                                     items: [
-                                        ...prev.getPostsByUser.items,
-                                        ...fetchMoreResult.getPostsByUser.items,
+                                        ...prev.getPostsByUser.items as ImagePost[],
+                                        ...fetchMoreResult.getPostsByUser.items as ImagePost[],
                                     ],
                                 },
                             }

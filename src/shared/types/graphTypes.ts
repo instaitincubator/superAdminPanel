@@ -68,7 +68,8 @@ interface PostOwnerModel {
   avatars?: Avatar[]
 }
 
-interface ImagePost {
+export interface ImagePost {
+  __typename: 'ImagePost'
   id?: number
   url?: string
   width?: number
