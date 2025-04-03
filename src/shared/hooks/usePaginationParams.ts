@@ -24,7 +24,7 @@ export const usePaginationParams = () => {
       statusFilter: router.query.statusFilter
         ? (router.query.statusFilter as UserBlockStatus)
         : UserBlockStatus.All,
-      pageSize: router.query.pageSize ? Number(router.query.pageSize) : 10,
+      pageSize: router.query.pageSize ? Number(router.query.pageSize) : 8,
       pageNumber: router.query.pageNumber ? Number(router.query.pageNumber) : 1,
     })
   }, [router])
