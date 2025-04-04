@@ -6,16 +6,16 @@ import { DOTS, usePagination } from "@/shared/ui/pagination/usePagination"
 import Select from "@/shared/ui/Select/Select"
 
 import { ChevronLeftIcon, ChevronRightIcon } from "../../../../public"
-import {useRouter} from "next/router";
+import { useRouter } from "next/router"
 
 const Pagination: React.FC<PaginationParams> = ({
   currentPage,
   pageSize,
   siblingCount,
   totalCount,
-  withReplace
+  withReplace,
+  pageSizeExtension,
 }) => {
-
   const onPageSizeChange = (value: number) => {
     const pushedRoute = {
       pathname: router.pathname,
@@ -52,18 +52,18 @@ const Pagination: React.FC<PaginationParams> = ({
     { label: 25, value: 25 },
     { label: 50, value: 50 },
     { label: 100, value: 100 },
-  ]
+    { label: pageSizeExtension?.label!, value: pageSizeExtension?.value! },
+  ].sort((a, b) => +a.label - +b.label)
   const minItemsForPagination = 5
 
   if (!totalCount || totalCount <= 0) {
     return null
   }
   const handlePageSizeChange = (value: number) => {
-      onPageSizeChange(value)
+    onPageSizeChange(value)
   }
 
   const onPageChange = (value: number) => {
-
     const pushedRoute = {
       pathname: router.pathname,
       query: {
@@ -77,7 +77,6 @@ const Pagination: React.FC<PaginationParams> = ({
     } else {
       void router.push(pushedRoute)
     }
-
   }
 
   return (

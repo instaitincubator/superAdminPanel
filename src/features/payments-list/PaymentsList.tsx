@@ -49,6 +49,7 @@ export const PaymentsList = () => {
         pageSize={payments?.getPayments.pageSize || 10}
         siblingCount={1}
         totalCount={payments?.getPayments.pagesCount || 0}
+        pageSizeExtension={{ label: 8, value: 8 }}
       />
     </div>
   )
