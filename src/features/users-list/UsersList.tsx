@@ -49,6 +49,8 @@ export const UsersList = () => {
 
   const { data: users } = useGetUsersQuery({ variables: paginationParams })
 
+    console.log('users -', users)
+
   return (
     <div className="flex flex-col gap-8 pb-[40px]">
       <div className="px-4 pt-4 flex gap-40">
@@ -70,6 +72,7 @@ export const UsersList = () => {
         pageSize={users?.getUsers.pagination.pageSize!}
         siblingCount={1}
         totalCount={users?.getUsers.pagination.totalCount!}
+        pageSizeExtension={{ label: 8, value: 8 }}
       />
     </div>
   )
